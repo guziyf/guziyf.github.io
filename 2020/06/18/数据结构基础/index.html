@@ -29,7 +29,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://image.guziyf.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B0-%E5%A0%86%E6%A0%88%E5%9B%BE%E8%A7%A3">
 <meta property="article:published_time" content="2020-06-18T09:28:55.000Z">
-<meta property="article:modified_time" content="2020-06-18T09:30:15.009Z">
+<meta property="article:modified_time" content="2020-06-18T09:45:45.288Z">
 <meta property="article:author" content="Wang QiAn">
 <meta property="article:tag" content="guziyf">
 <meta name="twitter:card" content="summary">
@@ -183,7 +183,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-06-18 17:28:55 / 修改时间：17:30:15" itemprop="dateCreated datePublished" datetime="2020-06-18T17:28:55+08:00">2020-06-18</time>
+              <time title="创建时间：2020-06-18 17:28:55 / 修改时间：17:45:45" itemprop="dateCreated datePublished" datetime="2020-06-18T17:28:55+08:00">2020-06-18</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -282,7 +282,6 @@ k =\log_2^n</script><p>所以最坏情况下的时间复杂度为：$O(\log n)$�
   if & : 2^k = N,k = log_2^n\\
   &= N·T(1) + log_2^n·N\\
   &= O(N·logN)
-
   \end{split}</script><ul>
 <li><p>在线处理算法（比分而治之更快，复杂度是O(N)）</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">MaxSub</span><span class="params">(<span class="keyword">int</span> A[], <span class="keyword">int</span> N)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  	<span class="keyword">int</span> ThisSum, MaxSum;</span><br><span class="line">    ThisSum = MaxSum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        ThisSum += A[i];				<span class="comment">//向右累加</span></span><br><span class="line">        <span class="keyword">if</span> (ThisSum &gt; MaxSum)		</span><br><span class="line">        &#123;</span><br><span class="line">            MaxSum = ThisSum;		<span class="comment">//发现更大和则更新结果</span></span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(ThisSum &lt; <span class="number">0</span>)		<span class="comment">//如果子列和为负</span></span><br><span class="line">        &#123;</span><br><span class="line">            ThisSum = <span class="number">0</span>;				<span class="comment">//则不可能使后面的部分和增大，抛弃</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> MaxSum;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a[] = &#123;<span class="number">1</span>,<span class="number">-1</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">-3</span>,<span class="number">-5</span>,<span class="number">7</span>,<span class="number">3</span>,<span class="number">-5</span>,<span class="number">-9</span>&#125;;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,MaxSub(a,<span class="number">10</span>)); <span class="comment">//11 //4+5-3-5+7+3=11</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
