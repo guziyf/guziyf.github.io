@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="二刷C语言的进阶知识，主要是关于链表和文件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C语言进阶">
+<meta property="og:url" content="http://yoursite.com/2020/06/19/C%E8%AF%AD%E8%A8%80%E8%BF%9B%E9%98%B6/index.html">
+<meta property="og:site_name" content="古子の博客">
+<meta property="og:description" content="二刷C语言的进阶知识，主要是关于链表和文件">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-06-19T01:00:15.000Z">
+<meta property="article:modified_time" content="2020-06-19T01:00:50.465Z">
+<meta property="article:author" content="Wang QiAn">
+<meta property="article:tag" content="guziyf">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/06/19/C%E8%AF%AD%E8%A8%80%E8%BF%9B%E9%98%B6/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>C语言进阶 | 古子の博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">古子の博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Enjoy Coding</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/19/C%E8%AF%AD%E8%A8%80%E8%BF%9B%E9%98%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="http://image.guziyf.com/avatar">
+      <meta itemprop="name" content="Wang QiAn">
+      <meta itemprop="description" content="正视无知，消除傲慢">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="古子の博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          C语言进阶
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-06-19 09:00:15 / 修改时间：09:00:50" itemprop="dateCreated datePublished" datetime="2020-06-19T09:00:15+08:00">2020-06-19</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index"><span itemprop="name">C语言</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>二刷C语言的进阶知识，主要是关于链表和文件</p>
+</blockquote>
+<a id="more"></a>
+<h1 id="第1章：指针与字符串"><a href="#第1章：指针与字符串" class="headerlink" title="第1章：指针与字符串"></a>第1章：指针与字符串</h1><h2 id="1-指针的使用"><a href="#1-指针的使用" class="headerlink" title="1.指针的使用"></a>1.指针的使用</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//非常经典的指针交换</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span> *p,<span class="keyword">int</span> *q)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t;</span><br><span class="line">    t = *p;</span><br><span class="line">    *p = *q;</span><br><span class="line">    *q = t;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a = <span class="number">5</span>;</span><br><span class="line">    <span class="keyword">int</span> b = <span class="number">6</span>;</span><br><span class="line"></span><br><span class="line">    swap(&amp;a,&amp;b);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"a = %d,b = %d\n"</span>,a,b); <span class="comment">//a = 6,b = 5</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="只适用于C99的指针与const"><a href="#只适用于C99的指针与const" class="headerlink" title="只适用于C99的指针与const"></a>只适用于C99的指针与const</h3><ul>
+<li><p>指针是const，表示：一旦得到了某个变量的地址，不能再指向其他变量</p>
+<ul>
+<li>int *const q = &i;q是const</li>
+<li>*q = 26; </li>
+<li>q++；//ERROR</li>
+<li>但是i可以变，可以被赋值，不能通过p去做赋值</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> *p1 = &amp;i;</span><br><span class="line"><span class="keyword">int</span> <span class="keyword">const</span>* p2 = &amp;i;</span><br><span class="line"><span class="keyword">int</span> *<span class="keyword">const</span> p3 = &amp;i;</span><br><span class="line"><span class="comment">// 标志是const在*号的前面还是后面，前两种是一样的，都在*号前面</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>const在前一般用在函数传参，所传递的参数类型比较大的时候，避免了函数对外面的变量的修改</li>
+</ul>
+</li>
+<li><p>const数组：<strong>const int a[] = {1,2,3,4,5,6}</strong>;这里的const表明数组的每个单元都是const int<strong>这种方式必须通过初始化赋值</strong></p>
+<ul>
+<li>如果要把数组传入函数，又不希望函数内部可以修改数组的值，可以设置参数为const，如：</li>
+<li><strong>int sum(const int a[],int len)</strong>;</li>
+</ul>
+<h2 id="2-指针运算"><a href="#2-指针运算" class="headerlink" title="2.指针运算"></a>2.指针运算</h2></li>
+<li><p>sizeof(char) = 1,sizeof(int) = 4</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a[] = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,&#125;;</span><br><span class="line"><span class="keyword">int</span> *q = a;</span><br><span class="line"><span class="keyword">int</span> *q1 = &amp;a[<span class="number">6</span>];</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%p\n"</span>, q);			<span class="comment">//0x7ffeef0006a0</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%p\n"</span>, q1);			<span class="comment">//0x7ffeef0006b8  与q差值24  </span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%p\n"</span>,q+<span class="number">1</span>); 		<span class="comment">//0x7ffeea5b26a4	与q差值4</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%ld\n"</span>, q1-q);	<span class="comment">// 6 其实是地址间的差值24除以sizeof(int)</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>*p++</p>
+<ul>
+<li>取出p所指的那个数据，完事儿之后顺便把p移到下一个位置</li>
+<li>++优先级比*高</li>
+<li>常用于数组类连续空间</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//使用指针遍历</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a[] = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">-1</span>&#125;;</span><br><span class="line">    <span class="keyword">int</span> *q = a;</span><br><span class="line">    <span class="keyword">while</span> (*q != <span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,*q++);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>void*表示不知道指向什么东西的指针</p>
+</li>
+<li><p>动态内存分配</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> *a;</span><br><span class="line">    <span class="keyword">int</span> number;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;number);</span><br><span class="line">    a = (<span class="keyword">int</span>*)<span class="built_in">malloc</span>(number*<span class="keyword">sizeof</span>(<span class="keyword">int</span>));	<span class="comment">//给a分配4*number个内存空间</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; number; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;a[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = number - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d "</span>,a[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">free</span>(a);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="3-字符串操作"><a href="#3-字符串操作" class="headerlink" title="3.字符串操作"></a>3.字符串操作</h2><ul>
+<li><p>putchar</p>
+<ul>
+<li>int putchar(int c);</li>
+<li>向标准输出写一个字符</li>
+<li>返回写了几个字符，EOF(-1)表示写失败</li>
+</ul>
+</li>
+<li><p>getchar</p>
+<ul>
+<li>int getchar(void);</li>
+<li>从标准输入读入一个字符</li>
+<li>返回类型是int是为了返回EOF(-1)</li>
+</ul>
+</li>
+<li><p>在mac上使用control+c退出当前程序</p>
+</li>
+<li><p>字符串数组</p>
+<ul>
+<li>char **a<ul>
+<li>a是一个指针，指向另一个指针，那个指针指向一个字符（串）</li>
+</ul>
+</li>
+<li>char a [ ] [ 10]</li>
+</ul>
+<p>| a[0] | Hello\0 |<br>| —— | ———- |<br>| a[1] | World\0 |<br>| a[2] | li\0    |</p>
+</li>
+<li><p>程序参数</p>
+<ul>
+<li><strong>int main(int argh,char const *argv[])</strong></li>
+<li>argv[0]是命令本身</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> <span class="keyword">const</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; argc; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d:%s\n"</span>,i,argv[i]);    <span class="comment">//0:/Users/guzi/Desktop/浙大C与数据结构学习代码/main</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//如果在命令行输入时，后面跟上如：./.a.out 123 asd asd a</span></span><br><span class="line"><span class="comment">//则输出：</span></span><br><span class="line"><span class="comment">//0:./a.out</span></span><br><span class="line"><span class="comment">//1:123</span></span><br><span class="line"><span class="comment">//2:asd</span></span><br><span class="line"><span class="comment">//3:asd</span></span><br><span class="line"><span class="comment">//4:a</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>做链接用的，一般开发也用不到，busybox</p>
+</li>
+</ul>
+<h1 id="第二章：结构类型"><a href="#第二章：结构类型" class="headerlink" title="第二章：结构类型"></a>第二章：结构类型</h1><h2 id="1-枚举"><a href="#1-枚举" class="headerlink" title="1.枚举"></a>1.枚举</h2><ul>
+<li>enum 枚举类型名字 {名字0，…，名字n};</li>
+<li>如：enum colors{red,yellow,green = 5};</li>
+<li>定义一个变量t，enum color t = red;（t就是一个enum color类型的变量,值是red）</li>
+</ul>
+<h2 id="2-结构"><a href="#2-结构" class="headerlink" title="2.结构"></a>2.结构</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">date</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> month;</span><br><span class="line">    <span class="keyword">int</span> day;</span><br><span class="line">    <span class="keyword">int</span> year;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> <span class="keyword">const</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">date</span> <span class="title">today</span>;</span> <span class="comment">//类型是struct类型</span></span><br><span class="line">    today.month = <span class="number">02</span>;</span><br><span class="line">    today.day = <span class="number">21</span>;</span><br><span class="line">    today.year = <span class="number">2020</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Today's date is %i-%i-%i.\n"</span>,today.year,today.month,today.day);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">date</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> month;</span><br><span class="line">    <span class="keyword">int</span> day;</span><br><span class="line">    <span class="keyword">int</span> year;</span><br><span class="line">&#125;today;								<span class="comment">//直接跟上要用的名字</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> <span class="keyword">const</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    today.month = <span class="number">02</span>;</span><br><span class="line">    today.day = <span class="number">21</span>;</span><br><span class="line">    today.year = <span class="number">2020</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Today's date is %i-%i-%i.\n"</span>,today.year,today.month,today.day);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">date</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> month;</span><br><span class="line">    <span class="keyword">int</span> day;</span><br><span class="line">    <span class="keyword">int</span> year;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> <span class="keyword">const</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">date</span> <span class="title">today</span> = &#123;</span><span class="number">02</span>,<span class="number">22</span>,<span class="number">2020</span>&#125;;         <span class="comment">// 赋值</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">date</span> <span class="title">thismonth</span> = &#123;</span>.month = <span class="number">2</span>,.year = <span class="number">2020</span>&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Today's date is %i-%i-%i.\n"</span>,today.year,today.month,today.day); </span><br><span class="line">  	<span class="comment">//Today's date is 2020-2-22.</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Today's date is %i-%i-%i.\n"</span>,thismonth.year,thismonth.month,thismonth.day);</span><br><span class="line">  	<span class="comment">//Today's date is 2020-2-0.</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>p = (struct point){5,10};//相当于p.x = 5;p.y = 10;</li>
+<li>p1 = p2;//相当于p1.x = p2.x;p1.y = p2.y;//这个方法不适用于数组</li>
+<li>结构作为函数参数，可以用结构体类型的函数对结构体进行输入，如：struct date getStruct(void){}</li>
+<li>指向结构的指针：</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//函数传值用</span></span><br><span class="line"><span class="function">struct date* <span class="title">getStruct</span><span class="params">(struct <span class="built_in">point</span> *p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;p-&gt;x);</span><br><span class="line">  	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;p-&gt;y);</span><br><span class="line">  	<span class="built_in">printf</span>(<span class="string">"%d, %d"</span>,p-&gt;x,p-&gt;y);</span><br><span class="line">    <span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-联合"><a href="#3-联合" class="headerlink" title="3.联合"></a>3.联合</h2><ul>
+<li><p>typedef</p>
+<ul>
+<li>typedef int Length</li>
+<li>这里的Length就成为int类型的别名了，就可以用Length定义变量：</li>
+<li>Length a,b;</li>
+<li>Length numbers[10];</li>
+</ul>
+</li>
+<li><p>typedef struct ADate{</p>
+<p>} Date;</p>
+</li>
+<li><p>这样之后的所有Struct ADate都可以用别名Date代替 </p>
+</li>
+<li><p>union和struct不一样的是，每块空间存一个16进制的地址</p>
+</li>
+<li>现在使用的x86是一种小端的机器，低位在前</li>
+<li>通常是用来做读写的中间的媒界</li>
+</ul>
+<h1 id="第3章：链表"><a href="#第3章：链表" class="headerlink" title="第3章：链表"></a>第3章：链表</h1><h2 id="1-可变数组"><a href="#1-可变数组" class="headerlink" title="1.可变数组"></a>1.可变数组</h2><ul>
+<li>C语言数组是固定大小，假如一开始不知道有多大空间要用，数组就不好用了</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> <span class="keyword">const</span> BLOCK_SIZE = <span class="number">20</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> *<span class="built_in">array</span>;</span><br><span class="line">    <span class="keyword">int</span> <span class="built_in">size</span>;</span><br><span class="line">&#125; Array;</span><br><span class="line"></span><br><span class="line"><span class="comment">//核心</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">array_inflate</span><span class="params">(Array *a,<span class="keyword">int</span> more_size)</span> <span class="comment">//让数组长大</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> *p = (<span class="keyword">int</span>*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">int</span>)*(a-&gt;<span class="built_in">size</span> + more_size));</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; a-&gt;<span class="built_in">size</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        p[i] = a-&gt;<span class="built_in">array</span>[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">free</span>(a-&gt;<span class="built_in">array</span>);</span><br><span class="line">    a-&gt;<span class="built_in">array</span> = p;</span><br><span class="line">    a-&gt;<span class="built_in">size</span> += more_size;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function">Array <span class="title">array_create</span><span class="params">(<span class="keyword">int</span> init_size)</span>          <span class="comment">//用来创建</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Array a;</span><br><span class="line">    a.<span class="built_in">size</span> = init_size;</span><br><span class="line">    a.<span class="built_in">array</span> = (<span class="keyword">int</span> *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">int</span>)*a.<span class="built_in">size</span>);</span><br><span class="line">    <span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">array_free</span><span class="params">(Array *a)</span>                   <span class="comment">//用来回收</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">free</span>(a-&gt;<span class="built_in">array</span>);</span><br><span class="line">    a-&gt;<span class="built_in">array</span> = <span class="literal">NULL</span>;</span><br><span class="line">    a-&gt;<span class="built_in">size</span> = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//封装，随着程序复杂度上升会越来越复杂，所以这样用</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">array_size</span><span class="params">(<span class="keyword">const</span> Array *a)</span>             <span class="comment">//告诉有多少个单元可用</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a-&gt;<span class="built_in">size</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> *<span class="title">array_at</span><span class="params">(Array *a,<span class="keyword">int</span> index)</span>          <span class="comment">//获得、访问某个单元</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (index &gt;= a-&gt;<span class="built_in">size</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        array_inflate(a,(index/BLOCK_SIZE+<span class="number">1</span>)*BLOCK_SIZE-a-&gt;<span class="built_in">size</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> &amp;(a-&gt;<span class="built_in">array</span>[index]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">array_get</span><span class="params">(<span class="keyword">const</span> Array *a, <span class="keyword">int</span> index)</span>    <span class="comment">//同上</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a-&gt;<span class="built_in">array</span>[index];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">array_set</span><span class="params">(Array *a,<span class="keyword">int</span> index, <span class="keyword">int</span> value)</span><span class="comment">//设置某个单元新值</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    a-&gt;<span class="built_in">array</span>[index] = value;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Array a = array_create(<span class="number">100</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,array_size(&amp;a));      <span class="comment">//100</span></span><br><span class="line">    *array_at(&amp;a,<span class="number">0</span>) = <span class="number">10</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, *array_at(&amp;a,<span class="number">0</span>));    <span class="comment">//10</span></span><br><span class="line">    array_set(&amp;a,<span class="number">0</span>,<span class="number">12</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,array_get(&amp;a,<span class="number">0</span>));     <span class="comment">//12</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> number;</span><br><span class="line">    <span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (number != <span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;number);</span><br><span class="line">        <span class="keyword">if</span>(number != <span class="number">-1</span>)</span><br><span class="line">            *array_at(&amp;a,cnt++) = number;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    array_free(&amp;a);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="2-链表"><a href="#2-链表" class="headerlink" title="2.链表"></a>2.链表</h2><ul>
+<li><p>可变数组的问题，随着数组长大，一开始要100个，然后变成1000个、10000个，到那个时候，拷贝一次要花很多时间。</p>
+</li>
+<li><p>链表：让一个数组指向下一个数组</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">node</span> &#123;</span></span><br><span class="line">		<span class="keyword">int</span> value;							<span class="comment">//值</span></span><br><span class="line">  	<span class="class"><span class="keyword">struct</span> _<span class="title">node</span> *<span class="title">next</span>;</span>			<span class="comment">//指针		</span></span><br><span class="line">&#125; Node;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">node</span> &#123;</span></span><br><span class="line">		<span class="keyword">int</span> value;		</span><br><span class="line">  	<span class="class"><span class="keyword">struct</span> _<span class="title">node</span> *<span class="title">next</span>;</span>			</span><br><span class="line">&#125; Node;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">list</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    Node* head;</span><br><span class="line">    Node* tail;</span><br><span class="line">&#125;List;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(List* pList,<span class="keyword">int</span> number)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(List* pList)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">findone</span><span class="params">(List* pList)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delect</span><span class="params">(List* pList)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> <span class="keyword">const</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// Node * head = NULL;     //链表需要一个头</span></span><br><span class="line">    List <span class="built_in">list</span>;</span><br><span class="line">    <span class="built_in">list</span>.head = <span class="built_in">list</span>.tail = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">int</span> number;</span><br><span class="line">    <span class="keyword">do</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;number);</span><br><span class="line">        <span class="keyword">if</span> (number != <span class="number">-1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            add(&amp;<span class="built_in">list</span>,number);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">while</span> (number != <span class="number">-1</span>);</span><br><span class="line">    <span class="built_in">print</span>(&amp;<span class="built_in">list</span>);</span><br><span class="line">    findone(&amp;<span class="built_in">list</span>);</span><br><span class="line">    delect(&amp;<span class="built_in">list</span>);</span><br><span class="line">  </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(List* pList,<span class="keyword">int</span> number)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//添加到链表里</span></span><br><span class="line">    Node *p = (Node*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(Node));  <span class="comment">//申请一个动态空间</span></span><br><span class="line">    p-&gt;value = number;                      <span class="comment">//值的位置添加一个值</span></span><br><span class="line">    p-&gt;next = <span class="literal">NULL</span>;                         <span class="comment">//指针的位置指向空</span></span><br><span class="line">    <span class="comment">//找到最后链表的最后一位</span></span><br><span class="line">    Node *last = pList-&gt;head;</span><br><span class="line">    <span class="keyword">if</span>(last)&#123;</span><br><span class="line">        <span class="keyword">while</span> (last-&gt;next)</span><br><span class="line">        &#123;</span><br><span class="line">            last = last-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        last-&gt;next = p;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// Node *last = pList-&gt;tail; //怎么才能确定这个尾巴就是尾巴</span></span><br><span class="line">    <span class="comment">// if (last)</span></span><br><span class="line">    <span class="comment">// &#123;</span></span><br><span class="line">    <span class="comment">//     last-&gt;next = p;</span></span><br><span class="line">    <span class="comment">// &#125;</span></span><br><span class="line">    <span class="keyword">else</span>                                   <span class="comment">//如果head是空的，就放在head里面</span></span><br><span class="line">    &#123;</span><br><span class="line">        pList-&gt;head = p;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(List* pList)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">    Node *p;</span><br><span class="line">    <span class="keyword">for</span> (p=pList-&gt;head;p;p = p-&gt;next)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d "</span>,p-&gt;value);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">findone</span><span class="params">(List* pList)</span></span></span><br><span class="line"><span class="function"></span>&#123;   </span><br><span class="line">    <span class="keyword">int</span> number;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;number);</span><br><span class="line">    Node *p;</span><br><span class="line">    <span class="keyword">int</span> <span class="built_in">find</span> = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(p=pList-&gt;head; p; p=p-&gt;next)&#123;</span><br><span class="line">        <span class="keyword">if</span> (p-&gt;value == number)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">find</span> = <span class="number">1</span>;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"找到了\n"</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(!<span class="built_in">find</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"没有找到\n"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delect</span><span class="params">(List* pList)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> number;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;number);</span><br><span class="line">    Node *p;</span><br><span class="line">    Node *q;</span><br><span class="line">    q = <span class="literal">NULL</span>;</span><br><span class="line">    q = p;</span><br><span class="line">    <span class="keyword">for</span>(p=pList-&gt;head; p; p=p-&gt;next)&#123;</span><br><span class="line">        <span class="keyword">if</span> (p-&gt;value == number)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(q)											<span class="comment">//判断是否为空</span></span><br><span class="line">            &#123;</span><br><span class="line">                q-&gt;next = p-&gt;next;</span><br><span class="line">            &#125;<span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                pList-&gt;head = p-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">free</span>(p);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="无空头链表"><a href="#无空头链表" class="headerlink" title="无空头链表"></a>无空头链表</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//节点结构体</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> a;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Node</span>* <span class="title">PNext</span>;</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 头尾指针</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span>* <span class="title">g_pHead</span> = <span class="title">NULL</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span>* <span class="title">g_pEnd</span> = <span class="title">NULL</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//创建链表，尾添加，按照输入顺序</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">AddNodeEnd</span><span class="params">(<span class="keyword">int</span> a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//创建一个节点</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Node</span>* <span class="title">pTemp</span> = (<span class="title">struct</span> <span class="title">Node</span>*)<span class="title">malloc</span>(<span class="title">sizeof</span>(<span class="title">struct</span> <span class="title">Node</span>));</span></span><br><span class="line">    <span class="comment">//节点数据赋值</span></span><br><span class="line">    pTemp-&gt;a = a;</span><br><span class="line">    pTemp-&gt;PNext = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="comment">//链接</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="literal">NULL</span> == g_pHead || <span class="literal">NULL</span> == g_pEnd)</span><br><span class="line">    &#123;</span><br><span class="line">        g_pHead = pTemp;</span><br><span class="line">        <span class="comment">// g_pEnd = pTemp;</span></span><br><span class="line">    &#125;<span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        g_pEnd-&gt;PNext = pTemp;</span><br><span class="line">        <span class="comment">// g_pEnd = pTemp;</span></span><br><span class="line">    &#125;</span><br><span class="line">    g_pEnd = pTemp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建链表,头添加，按照输入倒序</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">AddNodeHead</span><span class="params">(<span class="keyword">int</span> a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//创建一个节点</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Node</span>* <span class="title">pTemp</span> = (<span class="title">struct</span> <span class="title">Node</span>*)<span class="title">malloc</span>(<span class="title">sizeof</span>(<span class="title">struct</span> <span class="title">Node</span>));</span></span><br><span class="line">    <span class="comment">//节点数据赋值</span></span><br><span class="line">    pTemp-&gt;a = a;</span><br><span class="line">    pTemp-&gt;PNext = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="comment">//链接</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="literal">NULL</span> == g_pHead)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//空链表</span></span><br><span class="line">        g_pHead = pTemp;</span><br><span class="line">        g_pEnd = pTemp;</span><br><span class="line">    &#125;<span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        pTemp-&gt;PNext = g_pHead;  <span class="comment">//头添加，原来的头就变成了第二个</span></span><br><span class="line">        g_pHead = pTemp;        <span class="comment">//头就变成了新节点</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//遍历链表 打印链表</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ScanList</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Node</span> *<span class="title">pTemp</span> = <span class="title">g_pHead</span>;</span></span><br><span class="line">    <span class="keyword">while</span> (pTemp != <span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,pTemp-&gt;a);</span><br><span class="line">        pTemp = pTemp-&gt;PNext;<span class="comment">//节点指向下一个节点从下一个节点开始</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//遍历链表 查询指定的节点</span></span><br><span class="line"><span class="function">struct Node* <span class="title">SelectNode</span><span class="params">(<span class="keyword">int</span> a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Node</span> *<span class="title">pTemp</span> = <span class="title">g_pHead</span>;</span></span><br><span class="line">    <span class="keyword">while</span> (pTemp != <span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(a == pTemp-&gt;a)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> pTemp;</span><br><span class="line">        &#125;</span><br><span class="line">        pTemp = pTemp-&gt;PNext;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//链表清空</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">FreeList</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Node</span> *<span class="title">pTemp</span> = <span class="title">g_pHead</span>;</span></span><br><span class="line">    <span class="keyword">while</span> (pTemp != <span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">Node</span>*<span class="title">pt</span> = <span class="title">pTemp</span>;</span><span class="comment">//先记住</span></span><br><span class="line">        pTemp = pTemp-&gt;PNext;<span class="comment">//节点指向下一个节点从下一个节点开始</span></span><br><span class="line">        <span class="built_in">free</span>(pt);<span class="comment">//再释放，如果先释放，节点就没了，到不了下一个节点</span></span><br><span class="line">    &#125;    </span><br><span class="line">    <span class="comment">//头尾清空</span></span><br><span class="line">    g_pHead = <span class="literal">NULL</span>;</span><br><span class="line">    g_pEnd = <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//在指定位置插入节点</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">AddNode</span><span class="params">(<span class="keyword">int</span> index,<span class="keyword">int</span> a)</span><span class="comment">//index是节点位置，a是新节点值</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//链表为空</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="literal">NULL</span> == g_pHead)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"链表没有节点\n"</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//找到链表</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Node</span>* <span class="title">pt</span> = <span class="title">SelectNode</span>(<span class="title">index</span>);</span><span class="comment">//找到节点值</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="literal">NULL</span> == pt)<span class="comment">//没有这个节点</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"没有指定节点\n"</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//有这个节点</span></span><br><span class="line">    <span class="comment">//创建一个节点</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Node</span>* <span class="title">pTemp</span> = (<span class="title">struct</span> <span class="title">Node</span>*)<span class="title">malloc</span>(<span class="title">sizeof</span>(<span class="title">struct</span> <span class="title">Node</span>));</span> </span><br><span class="line">    pTemp-&gt;a = a;</span><br><span class="line">    pTemp-&gt;PNext = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="comment">//链接到链表上</span></span><br><span class="line">    <span class="keyword">if</span> (pt == g_pEnd)</span><br><span class="line">    &#123;</span><br><span class="line">        g_pEnd-&gt;PNext = pTemp;<span class="comment">//尾的下一个就是pTemp</span></span><br><span class="line">        g_pEnd = pTemp;<span class="comment">//现在pTemp就是尾</span></span><br><span class="line">    &#125;<span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//先链接，让新节点指向到找到的节点的下一个节点</span></span><br><span class="line">        pTemp-&gt;PNext = pt-&gt;PNext;</span><br><span class="line">        <span class="comment">//后断，断开找到的节点和下一个节点的链接，让它指向新节点</span></span><br><span class="line">        pt-&gt;PNext = pTemp;</span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//头删除</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">DeleteListHead</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="literal">NULL</span> == g_pHead)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"链表为空，无需释放\n"</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Node</span>* <span class="title">pTemp</span> = <span class="title">g_pHead</span>;</span></span><br><span class="line">    g_pHead = g_pHead-&gt;PNext;</span><br><span class="line">    <span class="built_in">free</span>(pTemp);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//尾删除</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">DeleteListEnd</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="literal">NULL</span> == g_pHead)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"链表为空，无需释放\n"</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//链表有几个节点</span></span><br><span class="line">    <span class="comment">//一个节点的情况</span></span><br><span class="line">    <span class="keyword">if</span>(g_pHead == g_pEnd)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">free</span>(g_pHead);</span><br><span class="line">        g_pHead = <span class="literal">NULL</span>;</span><br><span class="line">        g_pEnd = <span class="literal">NULL</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="comment">//找前一个节点</span></span><br><span class="line">        struct Node* pTemp = g_pHead;</span><br><span class="line">        <span class="keyword">while</span>(pTemp-&gt;PNext != g_pEnd)</span><br><span class="line">        &#123;</span><br><span class="line">            pTemp = pTemp-&gt;PNext;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//找到了节点了，删除尾巴</span></span><br><span class="line">        <span class="built_in">free</span>(g_pEnd);</span><br><span class="line">        g_pEnd = pTemp;</span><br><span class="line">        g_pEnd-&gt;PNext = <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//删除指定节点</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">DeleteNode</span><span class="params">(<span class="keyword">int</span> a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="literal">NULL</span> == g_pHead)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"链表为空，无法删除\n"</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//找这个节点</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Node</span>* <span class="title">pTemp</span> = <span class="title">SelectNode</span>(<span class="title">a</span>);</span></span><br><span class="line">    <span class="keyword">if</span>(<span class="literal">NULL</span> == pTemp)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"没有这个节点\n"</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//找到了</span></span><br><span class="line">    <span class="comment">//只有一个节点</span></span><br><span class="line">    <span class="keyword">if</span>(g_pHead == g_pEnd)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">free</span>(g_pHead);</span><br><span class="line">        g_pHead = g_pEnd = <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//有两个节点</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(g_pHead-&gt;PNext == g_pEnd)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(g_pHead == pTemp)</span><br><span class="line">        &#123;</span><br><span class="line">            DeleteListHead();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            DeleteListEnd();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//有多个节点</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(g_pHead == pTemp)</span><br><span class="line">        &#123;</span><br><span class="line">            DeleteListHead();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(g_pEnd == pTemp)</span><br><span class="line">        &#123;</span><br><span class="line">            DeleteListEnd();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            struct Node* pt = g_pHead;</span><br><span class="line">            <span class="keyword">while</span>(pt-&gt;PNext != pTemp)</span><br><span class="line">            &#123;</span><br><span class="line">                pt = pt-&gt;PNext;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//找到了要删除节点的前一个节点</span></span><br><span class="line">            pt-&gt;PNext = pTemp-&gt;PNext;</span><br><span class="line">            <span class="built_in">free</span>(pTemp);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> <span class="keyword">const</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a[<span class="number">10</span>] = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>&#125;;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        AddNodeHead(a[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// AddNode(4,45);</span></span><br><span class="line">    ScanList();</span><br><span class="line">    DeleteListEnd();</span><br><span class="line">    ScanList();</span><br><span class="line">    DeleteNode(<span class="number">4</span>);</span><br><span class="line">    ScanList();</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Node</span>*<span class="title">p</span> = <span class="title">SelectNode</span>(11);</span></span><br><span class="line">    <span class="keyword">if</span> (p != <span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,p-&gt;a);</span><br><span class="line">    &#125;<span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"没找到\n"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    FreeList();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="有空头链表"><a href="#有空头链表" class="headerlink" title="有空头链表"></a>有空头链表</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> a;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Node</span>* <span class="title">pNext</span>;</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//头尾指针</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span>* <span class="title">g_pHead</span> = <span class="title">NULL</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span>* <span class="title">g_pEnd</span> = <span class="title">NULL</span>;</span></span><br><span class="line"><span class="comment">//尾添加</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">AddListTail</span><span class="params">(<span class="keyword">int</span> a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//创建一个节点</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Node</span>* <span class="title">pTemp</span> = (<span class="title">struct</span>  <span class="title">Node</span>*)<span class="title">malloc</span>(<span class="title">sizeof</span>(<span class="title">struct</span> <span class="title">Node</span>));</span></span><br><span class="line">    pTemp-&gt;a = a;</span><br><span class="line">    pTemp-&gt;pNext = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//链接</span></span><br><span class="line">    g_pEnd-&gt;pNext = pTemp;</span><br><span class="line">    g_pEnd = pTemp;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//头添加</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">AddListHead</span><span class="params">(<span class="keyword">int</span> a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//创建一个节点</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Node</span>* <span class="title">pTemp</span> = (<span class="title">struct</span>  <span class="title">Node</span>*)<span class="title">malloc</span>(<span class="title">sizeof</span>(<span class="title">struct</span> <span class="title">Node</span>));</span></span><br><span class="line">    pTemp-&gt;a = a;</span><br><span class="line">    pTemp-&gt;pNext = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//链接</span></span><br><span class="line">    pTemp-&gt;pNext = g_pHead-&gt;pNext;</span><br><span class="line">    g_pHead-&gt;pNext = pTemp;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//遍历链表</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ScanList</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Node</span>* <span class="title">pTemp</span> = <span class="title">g_pHead</span>-&gt;<span class="title">pNext</span>;</span></span><br><span class="line">    <span class="keyword">while</span> (pTemp != <span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d "</span>,pTemp-&gt;a);</span><br><span class="line">        pTemp = pTemp-&gt;pNext;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//查找节点</span></span><br><span class="line"><span class="function">struct Node* <span class="title">SelectNode</span><span class="params">(<span class="keyword">int</span> a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Node</span>* <span class="title">pTemp</span> = <span class="title">g_pHead</span>-&gt;<span class="title">pNext</span>;</span></span><br><span class="line">    <span class="keyword">while</span> (pTemp != <span class="literal">NULL</span>)</span><br><span class="line">    &#123;   </span><br><span class="line">        <span class="keyword">if</span> (pTemp-&gt;a == a)</span><br><span class="line">        &#123;        </span><br><span class="line">            <span class="keyword">return</span> pTemp;</span><br><span class="line">        &#125;</span><br><span class="line">        pTemp = pTemp-&gt;pNext;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//任意位置添加</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">AddListRand</span><span class="params">(<span class="keyword">int</span> index, <span class="keyword">int</span> a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="literal">NULL</span> == g_pHead-&gt;pNext)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"链表无节点\n"</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//找 index节点</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Node</span>* <span class="title">pTemp</span> = <span class="title">SelectNode</span>(<span class="title">index</span>);</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="literal">NULL</span> == pTemp)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"没有这个节点\n"</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//找到了,创建节点</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Node</span>* <span class="title">pt</span> = (<span class="title">struct</span> <span class="title">Node</span>*)<span class="title">malloc</span>(<span class="title">sizeof</span>(<span class="title">struct</span> <span class="title">Node</span>));</span></span><br><span class="line">    pt-&gt;a = a;</span><br><span class="line">    pt-&gt;pNext = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="comment">//链接</span></span><br><span class="line">    <span class="keyword">if</span> (pTemp == g_pEnd)</span><br><span class="line">    &#123;</span><br><span class="line">        AddListTail(a);</span><br><span class="line">    &#125;<span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        pt-&gt;pNext = pTemp-&gt;pNext;</span><br><span class="line">        pTemp-&gt;pNext = pt;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//删除头</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">DeleteHead</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="literal">NULL</span> == g_pHead-&gt;pNext)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"链表无节点\n"</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//删除,记住节点</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Node</span>* <span class="title">pTemp</span> = <span class="title">g_pHead</span>-&gt;<span class="title">pNext</span>;</span></span><br><span class="line">    <span class="comment">//变头</span></span><br><span class="line">    g_pHead-&gt;pNext = g_pHead-&gt;pNext-&gt;pNext;</span><br><span class="line">    <span class="built_in">free</span>(pTemp);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//删除尾</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">DeleteTail</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="literal">NULL</span> == g_pHead-&gt;pNext)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"链表无尾\n"</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//有一个节点</span></span><br><span class="line">    <span class="keyword">if</span> (g_pHead-&gt;pNext == g_pEnd)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">free</span>(g_pEnd);</span><br><span class="line">        g_pHead-&gt;pNext =<span class="literal">NULL</span>;</span><br><span class="line">        g_pEnd = g_pHead;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//找到尾节点的上一个</span></span><br><span class="line">        struct Node* pTemp = g_pHead-&gt;pNext;</span><br><span class="line">        <span class="keyword">while</span> (pTemp != <span class="literal">NULL</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (g_pEnd == pTemp-&gt;pNext)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            pTemp = pTemp-&gt;pNext;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//找到了尾巴前一个节点</span></span><br><span class="line">        <span class="built_in">free</span>(g_pEnd);</span><br><span class="line">        g_pEnd = pTemp;</span><br><span class="line">        g_pEnd-&gt;pNext = <span class="literal">NULL</span>;</span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//删除任意节点</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">DeleteNodeRand</span><span class="params">(<span class="keyword">int</span> a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//有没有</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="literal">NULL</span> == g_pHead-&gt;pNext)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"链表无节点\n"</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//找 index节点</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Node</span>* <span class="title">pTemp</span> = <span class="title">SelectNode</span>(<span class="title">a</span>);</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="literal">NULL</span> == pTemp)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"没有这个节点\n"</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//找到了</span></span><br><span class="line">    <span class="comment">//只找到一个节点</span></span><br><span class="line">    <span class="keyword">if</span> (g_pHead-&gt;pNext == g_pEnd)</span><br><span class="line">    &#123;</span><br><span class="line">        DeleteTail();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//找到前一个节点</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Node</span>* <span class="title">pt</span> = <span class="title">g_pHead</span>;</span></span><br><span class="line">    <span class="keyword">while</span> (pt != <span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (pTemp == pt-&gt;pNext)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        pTemp = pTemp-&gt;pNext;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//找到了，删除</span></span><br><span class="line">    pt-&gt;pNext = pTemp-&gt;pNext;</span><br><span class="line">    <span class="built_in">free</span>(pTemp);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//释放链表</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">FreeList</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Node</span>* <span class="title">pTemp</span> = <span class="title">g_pHead</span>;</span></span><br><span class="line">    <span class="keyword">while</span> (pTemp != <span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">Node</span>* <span class="title">pt</span> = <span class="title">pTemp</span>;</span> </span><br><span class="line">        pTemp = pTemp-&gt;pNext;</span><br><span class="line">        <span class="built_in">free</span>(pt);</span><br><span class="line">    &#125;</span><br><span class="line">    g_pHead = <span class="literal">NULL</span>;</span><br><span class="line">    g_pEnd = <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> <span class="keyword">const</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//空头链表初始化</span></span><br><span class="line">    g_pHead = (struct  Node*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(struct Node));</span><br><span class="line">    g_pHead-&gt;pNext = <span class="literal">NULL</span>;</span><br><span class="line">    g_pEnd = g_pHead;</span><br><span class="line"></span><br><span class="line">    AddListTail(<span class="number">1</span>);</span><br><span class="line">    AddListTail(<span class="number">4</span>);</span><br><span class="line">    AddListTail(<span class="number">7</span>);</span><br><span class="line">    AddListTail(<span class="number">9</span>);</span><br><span class="line">    ScanList();</span><br><span class="line">    DeleteTail();</span><br><span class="line">    ScanList();</span><br><span class="line">    DeleteNodeRand(<span class="number">4</span>);</span><br><span class="line">    ScanList();</span><br><span class="line"></span><br><span class="line">    FreeList();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="第4章：程序结构"><a href="#第4章：程序结构" class="headerlink" title="第4章：程序结构"></a>第4章：程序结构</h1><h2 id="1-全局变量"><a href="#1-全局变量" class="headerlink" title="1.全局变量"></a>1.全局变量</h2><ul>
+<li>全局变量在没有手动进行初始化时，会自动初始化0值</li>
+<li>只能用已知值初始化，不能用（非const）变量的</li>
+<li>在局部函数（更小的范围）中定义一个和全局变量同名的变量，全局变量会被隐藏，在局部函数里调用的是局部变量</li>
+</ul>
+<h3 id="静态本地变量static"><a href="#静态本地变量static" class="headerlink" title="静态本地变量static"></a>静态本地变量static</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fs</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> <span class="keyword">const</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    f();    <span class="comment">//1 3</span></span><br><span class="line">    f();    <span class="comment">//1 3</span></span><br><span class="line">    f();    <span class="comment">//1 3</span></span><br><span class="line">  </span><br><span class="line">    fs();   <span class="comment">//1 3</span></span><br><span class="line">    fs();   <span class="comment">//3 5</span></span><br><span class="line">    fs();   <span class="comment">//5 7</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> all = <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d "</span>,all);</span><br><span class="line">    all += <span class="number">2</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,all);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fs</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> all = <span class="number">1</span>; <span class="comment">//使用static，保留上次离开时候的值</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d "</span>,all);</span><br><span class="line">    all += <span class="number">2</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,all);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>static就相当于全局变量，它的地址和全局变量是放在一起的</li>
+<li>也可以说static具有全局的生存期，但是在局部的作用域</li>
+</ul>
+<h3 id="返回指针的函数"><a href="#返回指针的函数" class="headerlink" title="返回指针的函数"></a>返回指针的函数</h3><ul>
+<li>返回本地变量的地址是危险的，它的地址会被系统回收，交给别的变量使用</li>
+<li>返回全局变量或静态本地变量的地址是安全的</li>
+<li>最好的做法是返回传入的指针 </li>
+</ul>
+<h3 id="尽量避免使用全局变量，使用全局变量和静态本地变量的函数是线程不安全的"><a href="#尽量避免使用全局变量，使用全局变量和静态本地变量的函数是线程不安全的" class="headerlink" title="尽量避免使用全局变量，使用全局变量和静态本地变量的函数是线程不安全的"></a>尽量避免使用全局变量，使用全局变量和静态本地变量的函数是线程不安全的</h3><h2 id="2-编译预处理和宏"><a href="#2-编译预处理和宏" class="headerlink" title="2.编译预处理和宏"></a>2.编译预处理和宏</h2><ul>
+<li><p>“#”开头的是编译预处理指令</p>
+</li>
+<li><p>它不是C语言的成分，但是C语言程序离不开它</p>
+</li>
+<li><p>“#define”用来定义一个宏</p>
+<ul>
+<li>比如说：#define PI 3.14159</li>
+<li>注意，不能加分号</li>
+<li>接一个“\”可以继续换行做</li>
+</ul>
+</li>
+<li><p>还有一个预定义的宏</p>
+<ul>
+<li><strong> LINE </strong>  (当前这段代码在第几行)</li>
+<li><strong> FILE </strong>（文件名）</li>
+<li><strong> DATE </strong>（文件创建时间）</li>
+<li><strong> TIME </strong>（当前时间）</li>
+<li><strong> STDC </strong>（当要求程序严格遵循ANSIC标准时该标识符被赋值为1）</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> <span class="keyword">const</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%s---%d\n"</span>, __FILE__, __LINE__);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%s---%s\n"</span>, __DATE__, __TIME__);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,__STDC__);</span><br><span class="line">    <span class="comment">//main.cpp---5</span></span><br><span class="line">    <span class="comment">//Feb 22 2020---20:13:05</span></span><br><span class="line">  	<span class="comment">//1</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>宏可以带参数</p>
+<ul>
+<li>“#define cube(x)( (x)<em> (x) </em> (x) )”</li>
+<li>调用的时候就可以用cube(i)，这个i可以是用户自定义的</li>
+<li>在.i文件中就会替换为( (i)<em> (i) </em> (i) )</li>
+<li>使用带参数的宏时一定要注意，<strong>一定要有括号</strong></li>
+</ul>
+</li>
+<li><p>在mac的命令行中如果这样：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">yinfengdeMacBook-Pro:浙大C与数据结构学习代码 guzi$ ls</span><br><span class="line">a.out		main		main.cpp</span><br><span class="line">yinfengdeMacBook-Pro:浙大C与数据结构学习代码 guzi$ gcc main.cpp --save-temps</span><br><span class="line">yinfengdeMacBook-Pro:浙大C与数据结构学习代码 guzi$ ls -l</span><br><span class="line">total <span class="number">160</span></span><br><span class="line">-rwxr-xr-x  <span class="number">1</span> guzi  staff  <span class="number">12660</span>  <span class="number">2</span> <span class="number">22</span> <span class="number">19</span>:<span class="number">28</span> main</span><br><span class="line">-rw-r--r--  <span class="number">1</span> guzi  staff   <span class="number">4368</span>  <span class="number">2</span> <span class="number">22</span> <span class="number">19</span>:<span class="number">54</span> main.bc</span><br><span class="line">-rw-r--r--  <span class="number">1</span> guzi  staff    <span class="number">374</span>  <span class="number">2</span> <span class="number">22</span> <span class="number">19</span>:<span class="number">27</span> main.cpp	</span><br><span class="line">  <span class="comment">//源代码</span></span><br><span class="line">-rw-r--r--  <span class="number">1</span> guzi  staff  <span class="number">27288</span>  <span class="number">2</span> <span class="number">22</span> <span class="number">19</span>:<span class="number">54</span> main.ii	</span><br><span class="line">  <span class="comment">//.cpp之后产生 会进行文本替换，替换所有宏</span></span><br><span class="line">-rw-r--r--  <span class="number">1</span> guzi  staff   <span class="number">2389</span>  <span class="number">2</span> <span class="number">22</span> <span class="number">19</span>:<span class="number">54</span> main.s		</span><br><span class="line">  <span class="comment">//.i然后产生</span></span><br><span class="line">-rw-r--r--  <span class="number">1</span> guzi  staff   <span class="number">1396</span>  <span class="number">2</span> <span class="number">22</span> <span class="number">19</span>:<span class="number">54</span> main.o		</span><br><span class="line">  <span class="comment">//.s之后产生</span></span><br><span class="line">-rwxr-xr-x  <span class="number">1</span> guzi  staff  <span class="number">12660</span>  <span class="number">2</span> <span class="number">22</span> <span class="number">19</span>:<span class="number">54</span> a.out		</span><br><span class="line">  <span class="comment">//.o之后产生</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="3-大结构程序"><a href="#3-大结构程序" class="headerlink" title="3.大结构程序"></a>3.大结构程序</h2><ul>
+<li><p>include有两种形式来插入文件””和&lt;&gt;</p>
+</li>
+<li><p>“”要求编译器首先在当前目录（.c文件所在目录）寻找这个文件，如果没有，到编译器制定的目录去找</p>
+</li>
+<li><p>&lt;&gt;让编译器到指定目录去找</p>
+</li>
+<li><p>编译器自己是知道自己的标准库的头文件在哪里的</p>
+</li>
+<li><p>“#include”<strong>不是</strong>用来引入库的</p>
+</li>
+<li><p>C语言编译器默认会引入所有的标准库</p>
+</li>
+<li><p>“#include <stdio.h>”只是为了让编译器知道printf函数的原型，保证调用时给出的<strong>参数值</strong>是正确的类型</p>
+</li>
+<li><p>在函数前面加上static使它成为只能在所在的编译单元中被使用的函数</p>
+</li>
+<li><p>在全局变量前面加上static就使它成为只能在所在编译单元被使用的全局变量</p>
+</li>
+<li><p>标准头文件结构：(避免头文件重复引用)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#ifndef _MAX_H_</span><br><span class="line">#define _MAX_H_</span><br><span class="line">…</span><br><span class="line">…</span><br><span class="line">#endif</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="第5章：文件"><a href="#第5章：文件" class="headerlink" title="第5章：文件"></a>第5章：文件</h1><h2 id="1-文件"><a href="#1-文件" class="headerlink" title="1.文件"></a>1.文件</h2><ul>
+<li>在“%”和[type]中间还可以有四种东西</li>
+<li>[flags]<ul>
+<li>“ - ” ：左对齐</li>
+<li>“ + ”：在输出前面放+或-</li>
+<li>（space）：正数留空</li>
+<li>0 ：填充</li>
+</ul>
+</li>
+<li>[width]、[.prec]<ul>
+<li>number：最小字符数</li>
+<li>“*”：下一个参数是字符数</li>
+<li>“.number”小数点后的位数</li>
+<li>“.*”下一个参数是从小数点后的位数</li>
+</ul>
+</li>
+<li>[HIL]<ul>
+<li>hh：单个字节</li>
+<li>h：short</li>
+<li>I：long</li>
+<li>II：long long</li>
+<li>L：long double</li>
+</ul>
+</li>
+<li><p>[type]</p>
+<ul>
+<li>o：八进制</li>
+<li>x：十六进制</li>
+<li>X：大写字母的十六进制</li>
+</ul>
+</li>
+<li><p>fopen</p>
+<ul>
+<li>r：打开只读</li>
+<li>r+：打开读写，从文件头开始</li>
+<li>w：打开只写，如果不存在则新建，如果存在则清空</li>
+<li>w+：打开读写，如果不存在则新建，如果存在则清空</li>
+<li>a：打开追加，如果不存在则新建，如果存在则从文件尾开始</li>
+<li>..x：只新建，如果文件已存在则不能打开</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> <span class="keyword">const</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    FILE* fp = fopen(<span class="string">"12.txt"</span>,<span class="string">"r"</span>);</span><br><span class="line">    <span class="keyword">if</span> (fp)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> num;</span><br><span class="line">        <span class="built_in">fscanf</span>(fp,<span class="string">"%d"</span>,&amp;num);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, num);			<span class="comment">//12345</span></span><br><span class="line">        fclose(fp);</span><br><span class="line">    &#125;<span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"无法打开文件\n"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//文件12.txt</span></span><br><span class="line"><span class="comment">//12345</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="2-位运算"><a href="#2-位运算" class="headerlink" title="2.位运算"></a>2.位运算</h2><ul>
+<li><p>按位运算运算符</p>
+<ul>
+<li><p>&amp;：按位的与</p>
+<p>| 1    | 1    | 1    |<br>| —— | —— | —— |<br>| 1    | 0    | 0    |<br>| 0    | 1    | 0    |<br>| 0    | 0    | 0    |</p>
+</li>
+<li><p>|：按位的或</p>
+<p>| 1    | 1    | 1    |<br>| —— | —— | —— |<br>| 1    | 0    | 1    |<br>| 0    | 1    | 1    |<br>| 0    | 0    | 0    |</p>
+</li>
+<li><p>~：按位取反</p>
+</li>
+<li><p>^：按位的异或</p>
+<p>| 1    | 1    | 0    |<br>| —— | —— | —— |<br>| 0    | 1    | 1    |<br>| 1    | 0    | 1    |<br>| 0    | 0    | 0    |</p>
+</li>
+<li><p>&lt;&lt;：左移</p>
+<ul>
+<li><p>i &lt;&lt; j就是说要把i中所有的位向左移动j个位置，而右边填入0</p>
+</li>
+<li><p>所有小于int的类型，移位以int的方式来做，结果是int</p>
+</li>
+<li><p>x &lt;&lt;= 1 等价于 x *= 2</p>
+</li>
+<li><p>x &lt;&lt;= n 等价于 x *= 2^n</p>
+<p>| A    | 5    |      |      |<br>| —— | —— | —— | —— |<br>| 1010 | 0101 | &lt;&lt;   | 2    |<br>| 1001 | 0100 |      |      |<br>| 9    | 4    |      |      |</p>
+</li>
+</ul>
+</li>
+<li><p>“&gt;&gt;”：右移</p>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/06/19/C-Primer%E7%9A%84%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" rel="prev" title="C++ Primer的阅读笔记">
+      <i class="fa fa-chevron-left"></i> C++ Primer的阅读笔记
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/06/19/Python%E5%9F%BA%E7%A1%801/" rel="next" title="Python基础1">
+      Python基础1 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第1章：指针与字符串"><span class="nav-number">1.</span> <span class="nav-text">第1章：指针与字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-指针的使用"><span class="nav-number">1.1.</span> <span class="nav-text">1.指针的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#只适用于C99的指针与const"><span class="nav-number">1.1.1.</span> <span class="nav-text">只适用于C99的指针与const</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-指针运算"><span class="nav-number">1.2.</span> <span class="nav-text">2.指针运算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-字符串操作"><span class="nav-number">1.3.</span> <span class="nav-text">3.字符串操作</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第二章：结构类型"><span class="nav-number">2.</span> <span class="nav-text">第二章：结构类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-枚举"><span class="nav-number">2.1.</span> <span class="nav-text">1.枚举</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-结构"><span class="nav-number">2.2.</span> <span class="nav-text">2.结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-联合"><span class="nav-number">2.3.</span> <span class="nav-text">3.联合</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第3章：链表"><span class="nav-number">3.</span> <span class="nav-text">第3章：链表</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-可变数组"><span class="nav-number">3.1.</span> <span class="nav-text">1.可变数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-链表"><span class="nav-number">3.2.</span> <span class="nav-text">2.链表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#无空头链表"><span class="nav-number">3.2.1.</span> <span class="nav-text">无空头链表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有空头链表"><span class="nav-number">3.2.2.</span> <span class="nav-text">有空头链表</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第4章：程序结构"><span class="nav-number">4.</span> <span class="nav-text">第4章：程序结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-全局变量"><span class="nav-number">4.1.</span> <span class="nav-text">1.全局变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#静态本地变量static"><span class="nav-number">4.1.1.</span> <span class="nav-text">静态本地变量static</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#返回指针的函数"><span class="nav-number">4.1.2.</span> <span class="nav-text">返回指针的函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#尽量避免使用全局变量，使用全局变量和静态本地变量的函数是线程不安全的"><span class="nav-number">4.1.3.</span> <span class="nav-text">尽量避免使用全局变量，使用全局变量和静态本地变量的函数是线程不安全的</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-编译预处理和宏"><span class="nav-number">4.2.</span> <span class="nav-text">2.编译预处理和宏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-大结构程序"><span class="nav-number">4.3.</span> <span class="nav-text">3.大结构程序</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第5章：文件"><span class="nav-number">5.</span> <span class="nav-text">第5章：文件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-文件"><span class="nav-number">5.1.</span> <span class="nav-text">1.文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-位运算"><span class="nav-number">5.2.</span> <span class="nav-text">2.位运算</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Wang QiAn"
+      src="http://image.guziyf.com/avatar">
+  <p class="site-author-name" itemprop="name">Wang QiAn</p>
+  <div class="site-description" itemprop="description">正视无知，消除傲慢</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/guziyf" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;guziyf" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:805170066@qq.com" title="E-Mail → mailto:805170066@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wang QiAn</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+-->
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+  
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+  
+
+</body>
+</html>
