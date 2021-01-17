@@ -159,6 +159,182 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/17/6-%E5%AD%A6%E6%88%90%E5%9C%A8%E7%BA%BF%E6%A1%88%E4%BE%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="http://image.guziyf.com/avatar">
+      <meta itemprop="name" content="Wang QiAn">
+      <meta itemprop="description" content="正视无知，消除傲慢">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="古子の博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/17/6-%E5%AD%A6%E6%88%90%E5%9C%A8%E7%BA%BF%E6%A1%88%E4%BE%8B/" class="post-title-link" itemprop="url">6.学成在线案例</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-01-17 10:55:22 / 修改时间：21:03:30" itemprop="dateCreated datePublished" datetime="2021-01-17T10:55:22+08:00">2021-01-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/weblearn/" itemprop="url" rel="index"><span itemprop="name">weblearn</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="导航栏"><a href="#导航栏" class="headerlink" title="导航栏"></a>导航栏</h1><ul>
+<li><p>实际开发中，不会直接用链接a而是用li包含链接<code>&lt;li&gt;&lt;a href=&quot;&quot;&gt;&lt;/a&gt;&lt;/li&gt;</code>的做法</p>
+</li>
+<li><p>如果直接用a，搜索引擎容易识别为有堆砌关键字嫌疑，影响网站排名</p>
+</li>
+<li><p>给每个小a一个盒子，用<code>display:block</code></p>
+</li>
+<li>一般都要取消a的下划线<code>text-decoration: none;</code>，可以在最前面写</li>
+<li>当鼠标移动到a上盒子出现下边框<code>a:hover{border-bottom: 2px solid #00A4FE;}</code><ul>
+<li>注意别忘了设定线的样式</li>
+</ul>
+</li>
+<li>用行高和盒子等高的方法使导航标签居中<code>line-height: 42px;</code></li>
+<li>因为导航栏里面文字不一样多，所以最好给链接a左右padding撑开盒子，而不是指定宽度</li>
+<li>搜索框</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"search"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">value</span>=<span class="string">"请输入关键词"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">button</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"images/search.png"</span> <span class="attr">alt</span>=<span class="string">""</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.search</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">412px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">42px</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#00A3FF</span>;</span><br><span class="line">    <span class="attribute">float</span>: left;</span><br><span class="line">    <span class="attribute">margin-left</span>: <span class="number">50px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.search</span> <span class="selector-tag">input</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">345px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">40px</span>;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#00A3FF</span>;</span><br><span class="line">    <span class="attribute">border-right</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#bfbfbf</span>;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">14px</span>;</span><br><span class="line">    <span class="attribute">padding-left</span>: <span class="number">15px</span>;</span><br><span class="line">    <span class="attribute">float</span>: left;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.search</span> <span class="selector-tag">button</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">50px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">42px</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#00A3FF</span>;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">float</span>: left;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="banner栏"><a href="#banner栏" class="headerlink" title="banner栏"></a>banner栏</h1><ul>
+<li>背景透明度方法<code>background-color: rgba(0, 0, 0, .3);</code></li>
+<li>li取消前面的点<code>list-style-type: none;</code></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/16/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="http://image.guziyf.com/avatar">
+      <meta itemprop="name" content="Wang QiAn">
+      <meta itemprop="description" content="正视无知，消除傲慢">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="古子の博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/16/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" class="post-title-link" itemprop="url">神经网络</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-01-16 18:47:56" itemprop="dateCreated datePublished" datetime="2021-01-16T18:47:56+08:00">2021-01-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-01-17 10:40:36" itemprop="dateModified" datetime="2021-01-17T10:40:36+08:00">2021-01-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="1-什么是神经网络"><a href="#1-什么是神经网络" class="headerlink" title="1.什么是神经网络"></a>1.什么是神经网络</h1><ul>
+<li>人工神经网络不能产生新的链接</li>
+<li>生物神经网络自反馈，生成新网络</li>
+<li>刺激函数、刺激行为</li>
+</ul>
+<h3 id="梯度下降机制"><a href="#梯度下降机制" class="headerlink" title="梯度下降机制"></a>梯度下降机制</h3><ul>
+<li>斜率就是梯度，向下到一个位置再做切线</li>
+<li>简化版的只要找到梯度躺平的点</li>
+</ul>
+<h3 id="神经网络的黑盒不黑"><a href="#神经网络的黑盒不黑" class="headerlink" title="神经网络的黑盒不黑"></a>神经网络的黑盒不黑</h3><ul>
+<li>加工过程就是黑盒</li>
+<li>一次次代表特征的转换</li>
+<li>当代表特征太多时，人眼看不过来，只能让计算机识别</li>
+</ul>
+<h1 id="2-给电脑安装tensorflow"><a href="#2-给电脑安装tensorflow" class="headerlink" title="2.给电脑安装tensorflow"></a>2.给电脑安装tensorflow</h1>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/16/5-%E6%B5%AE%E5%8A%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -184,7 +360,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-01-16 17:01:26 / 修改时间：17:01:48" itemprop="dateCreated datePublished" datetime="2021-01-16T17:01:26+08:00">2021-01-16</time>
+              <time title="创建时间：2021-01-16 17:01:26 / 修改时间：19:27:44" itemprop="dateCreated datePublished" datetime="2021-01-16T17:01:26+08:00">2021-01-16</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -207,7 +383,71 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          
+          <h1 id="1-传统网页布局的三种方式"><a href="#1-传统网页布局的三种方式" class="headerlink" title="1.传统网页布局的三种方式"></a>1.传统网页布局的三种方式</h1><ul>
+<li>普通流（标准流）、浮动、定位<ul>
+<li>按照默认规定好的方式排列</li>
+<li>一个页面部分基本都包含了三种布局方式</li>
+</ul>
+</li>
+<li>如何将多个块级放一排<ul>
+<li>行内块</li>
+<li>浮动float</li>
+</ul>
+</li>
+<li>网页布局第一准则：多个块级元素纵向排列找标准流，多个块级元素横向排列找浮动</li>
+</ul>
+<h1 id="2-什么是浮动"><a href="#2-什么是浮动" class="headerlink" title="2.什么是浮动"></a>2.什么是浮动</h1><ul>
+<li>用于创建浮动框，将其移动到一边，直到左边缘或右边缘触及包含块或另一个浮动框的边缘</li>
+<li>浮动元素会脱离标准流<ul>
+<li>脱离标准流的控制（浮）移动到指定位置（动），即脱标</li>
+<li>浮动的盒子不再保留原先的位置，这个位置让其他标准流占用</li>
+<li>浮动的盒子应该在上层</li>
+<li>添加了任何浮动后，都会具有行内块元素的特性</li>
+</ul>
+</li>
+<li>用标准流的父盒子约束</li>
+</ul>
+<h1 id="3-浮动布局注意点"><a href="#3-浮动布局注意点" class="headerlink" title="3.浮动布局注意点"></a>3.浮动布局注意点</h1><ul>
+<li><p>浮动和标准流的父盒子搭配</p>
+</li>
+<li><p>一个元素浮动了，理论上其余兄弟元素也要浮动</p>
+</li>
+<li><p>浮动的盒子只会影响浮动盒子后面的标准流，不会影响前面的</p>
+</li>
+<li><p>盒子不一定需要定死高度，让孩子撑开</p>
+<ul>
+<li><p>清除浮动的本质</p>
+<ul>
+<li>清除浮动元素造成的影响</li>
+</ul>
+</li>
+<li><p>clear :left|right|both</p>
+</li>
+<li><p>额外标签法（隔墙法）</p>
+<ul>
+<li>就是在最后一个元素后面加一个额外标签clear</li>
+<li>新增的盒子必须是块级元素，不能是行内元素</li>
+</ul>
+</li>
+<li><p>父级添加overflow属性</p>
+<ul>
+<li>父元素中添加overflow:hidden</li>
+<li>缺点无法显示溢出的部分</li>
+</ul>
+</li>
+<li><p>父级添加after伪元素（百度、淘宝、网易都这么用）</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">:after</span> &#123;</span><br><span class="line">        <span class="attribute">content</span>: <span class="string">""</span>;</span><br><span class="line">        <span class="attribute">display</span>: block;</span><br><span class="line">        <span class="attribute">height</span>: <span class="number">0</span>;</span><br><span class="line">        <span class="attribute">clear</span>: both;</span><br><span class="line">        <span class="attribute">visibility</span>: hidden;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="selector-class">.clearfix</span> &#123;</span><br><span class="line">        <span class="comment">/* 兼容IE6、7 */</span></span><br><span class="line">        *zoom: 1;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>给父元素加clearfix</li>
+</ul>
+</li>
+<li><p>父级添加双伪元素</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">:before</span>,</span><br><span class="line">    <span class="selector-class">.clearfix</span><span class="selector-pseudo">:after</span> &#123;</span><br><span class="line">        <span class="attribute">content</span>: <span class="string">""</span>;</span><br><span class="line">        <span class="attribute">display</span>: table;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="selector-class">.clearfix</span><span class="selector-pseudo">:after</span> &#123;</span><br><span class="line">        <span class="attribute">clear</span>: both;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="selector-class">.clearfix</span> &#123;</span><br><span class="line">        <span class="comment">/* 兼容IE6、7 */</span></span><br><span class="line">        *zoom: 1;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+
       
     </div>
 
@@ -257,7 +497,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-01-16 16:57:15" itemprop="dateModified" datetime="2021-01-16T16:57:15+08:00">2021-01-16</time>
+                <time title="修改时间：2021-01-16 20:18:04" itemprop="dateModified" datetime="2021-01-16T20:18:04+08:00">2021-01-16</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -797,165 +1037,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/19/Python%E5%9F%BA%E7%A1%802/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="http://image.guziyf.com/avatar">
-      <meta itemprop="name" content="Wang QiAn">
-      <meta itemprop="description" content="正视无知，消除傲慢">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="古子の博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/06/19/Python%E5%9F%BA%E7%A1%802/" class="post-title-link" itemprop="url">Python基础2</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-06-19 09:02:46 / 修改时间：09:03:11" itemprop="dateCreated datePublished" datetime="2020-06-19T09:02:46+08:00">2020-06-19</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>列表、元组、字典、集合</p>
-</blockquote>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/06/19/Python%E5%9F%BA%E7%A1%802/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/19/Python%E5%9F%BA%E7%A1%801/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="http://image.guziyf.com/avatar">
-      <meta itemprop="name" content="Wang QiAn">
-      <meta itemprop="description" content="正视无知，消除傲慢">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="古子の博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/06/19/Python%E5%9F%BA%E7%A1%801/" class="post-title-link" itemprop="url">Python基础1</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-06-19 09:02:02 / 修改时间：09:02:40" itemprop="dateCreated datePublished" datetime="2020-06-19T09:02:02+08:00">2020-06-19</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>根据阿里云大学提供的课程（尚学堂网课）整理了如下基础知识，基础知识学习路线部分一共分了三节大课，统一整理，方便以后回顾。</p>
-<p>第一部分主要介绍语法基础，包括一个质数练习的优化</p>
-</blockquote>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/06/19/Python%E5%9F%BA%E7%A1%801/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1023,7 +1108,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-count">22</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
