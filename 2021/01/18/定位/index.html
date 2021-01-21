@@ -20,20 +20,20 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="精灵图使用 移动背景图片，使用background-position  移动的距离是目标图片的x和y坐标  12345.box &amp;#123;           width: 60px;           height: 60px;           background: url(images&#x2F;index.png) -182px 0;       &amp;#125;  x轴往右走是正的，y轴往下走">
+  <meta name="description" content="为什么需要定位 某个元素可以自由的在一个盒子内移动，并且压住其他盒子  有些盒子固定在屏幕中的位置  定位的组成  定位&#x3D;定位模式+边偏移  定位模式用于指定一个元素在文档中的定位方式。边偏移则决定了该元素的最终位置  定位模式通过position属性设置 | 值       | 语义     || ———— | ———— || static   | 静态定位 || relative | 相对定位">
 <meta property="og:type" content="article">
-<meta property="og:title" content="8.高级css技巧">
-<meta property="og:url" content="http://yoursite.com/2021/01/18/8-%E9%AB%98%E7%BA%A7css%E6%8A%80%E5%B7%A7/index.html">
+<meta property="og:title" content="定位">
+<meta property="og:url" content="http://yoursite.com/2021/01/18/%E5%AE%9A%E4%BD%8D/index.html">
 <meta property="og:site_name" content="古子の博客">
-<meta property="og:description" content="精灵图使用 移动背景图片，使用background-position  移动的距离是目标图片的x和y坐标  12345.box &amp;#123;           width: 60px;           height: 60px;           background: url(images&#x2F;index.png) -182px 0;       &amp;#125;  x轴往右走是正的，y轴往下走">
+<meta property="og:description" content="为什么需要定位 某个元素可以自由的在一个盒子内移动，并且压住其他盒子  有些盒子固定在屏幕中的位置  定位的组成  定位&#x3D;定位模式+边偏移  定位模式用于指定一个元素在文档中的定位方式。边偏移则决定了该元素的最终位置  定位模式通过position属性设置 | 值       | 语义     || ———— | ———— || static   | 静态定位 || relative | 相对定位">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-01-18T11:25:47.000Z">
-<meta property="article:modified_time" content="2021-01-19T01:26:10.000Z">
+<meta property="article:published_time" content="2021-01-18T04:06:00.000Z">
+<meta property="article:modified_time" content="2021-01-21T11:57:12.581Z">
 <meta property="article:author" content="Wang QiAn">
 <meta property="article:tag" content="guziyf">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/2021/01/18/8-%E9%AB%98%E7%BA%A7css%E6%8A%80%E5%B7%A7/">
+<link rel="canonical" href="http://yoursite.com/2021/01/18/%E5%AE%9A%E4%BD%8D/">
 
 
 <script id="page-configurations">
@@ -46,7 +46,7 @@
   };
 </script>
 
-  <title>8.高级css技巧 | 古子の博客</title>
+  <title>定位 | 古子の博客</title>
   
 
 
@@ -162,7 +162,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/18/8-%E9%AB%98%E7%BA%A7css%E6%8A%80%E5%B7%A7/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/18/%E5%AE%9A%E4%BD%8D/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="http://image.guziyf.com/avatar">
@@ -175,7 +175,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          8.高级css技巧
+          定位
         </h1>
 
         <div class="post-meta">
@@ -185,14 +185,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-01-18 19:25:47" itemprop="dateCreated datePublished" datetime="2021-01-18T19:25:47+08:00">2021-01-18</time>
+              <time title="创建时间：2021-01-18 12:06:00" itemprop="dateCreated datePublished" datetime="2021-01-18T12:06:00+08:00">2021-01-18</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-01-19 09:26:10" itemprop="dateModified" datetime="2021-01-19T09:26:10+08:00">2021-01-19</time>
+                <time title="修改时间：2021-01-21 19:57:12" itemprop="dateModified" datetime="2021-01-21T19:57:12+08:00">2021-01-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -215,154 +215,87 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="精灵图使用"><a href="#精灵图使用" class="headerlink" title="精灵图使用"></a>精灵图使用</h1><ul>
-<li><p>移动背景图片，使用background-position</p>
+        <h1 id="为什么需要定位"><a href="#为什么需要定位" class="headerlink" title="为什么需要定位"></a>为什么需要定位</h1><ul>
+<li><p>某个元素可以自由的在一个盒子内移动，并且压住其他盒子</p>
+</li>
+<li><p>有些盒子固定在屏幕中的位置</p>
+</li>
+<li><p>定位的组成</p>
 <ul>
-<li>移动的距离是目标图片的x和y坐标</li>
-</ul>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">           <span class="attribute">width</span>: <span class="number">60px</span>;</span><br><span class="line">           <span class="attribute">height</span>: <span class="number">60px</span>;</span><br><span class="line">           <span class="attribute">background</span>: <span class="built_in">url</span>(images/index.png) -<span class="number">182px</span> <span class="number">0</span>;</span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>x轴往右走是正的，y轴往下走是负的，注意：是精灵图在移动，不是盒子在移动，所以一般都是负值</li>
+<li><p>定位=定位模式+边偏移</p>
+</li>
+<li><p>定位模式用于指定一个元素在文档中的定位方式。边偏移则决定了该元素的最终位置</p>
+</li>
+<li><p>定位模式通过position属性设置</p>
+<p>| 值       | 语义     |<br>| ———— | ———— |<br>| static   | 静态定位 |<br>| relative | 相对定位 |<br>| absolute | 绝对定位 |<br>| fixed    | 固定定位 |</p>
+</li>
+<li><p>边偏移有top、bottom、left和right4个属性，分别表示相对于父元素边线的距离</p>
+</li>
+<li>静态定位static<ul>
+<li>按照标准流特性摆放，没有边偏移</li>
+<li>很少在布局中使用</li>
 </ul>
 </li>
-</ul>
-<h1 id="字体图标"><a href="#字体图标" class="headerlink" title="字体图标"></a>字体图标</h1><ul>
-<li>精灵图有什么优点，但缺点也很明显<ul>
-<li>图片文件大</li>
-<li>图片本身放大缩小会失真</li>
-<li>一旦图片制作完毕想要更换非常复杂</li>
+<li>相对定位relative<ul>
+<li>相对于它原来的位置</li>
+<li>原来的位置在标准流中继续占有，不脱标</li>
+<li>最典型的应用是个给绝对定位当爹</li>
 </ul>
 </li>
-<li>展示的是图标，本质是文字<ul>
-<li><a href="http://icomoon.io" target="_blank" rel="noopener">icomoon字库</a></li>
-<li><a href="http://www.iconfont.cn" target="_blank" rel="noopener">阿里iconfont字库</a></li>
+<li>绝对定位absolute<ul>
+<li>相对于祖先元素来说</li>
+<li>如果没有祖元素，或祖元素没有定位，则以浏览器定位</li>
+<li>如果祖元素有定位（相对、绝对、固定定位），则以最近一级的有定位祖先元素为参考点移动位置</li>
 </ul>
 </li>
-<li>使用方法</li>
+<li>固定定位fixed<ul>
+<li>固定在浏览器可视区</li>
+<li>跟父元素没有关系</li>
+<li>不能滚动条滚动</li>
+<li>还可以和版心始终贴在一起，让固定定位的盒子left: 50%. 走到浏览器可视区的一半位置；让固定定位的盒子margin-left版心宽度的一半距离，多走版心宽度的一半位置</li>
 </ul>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@font-face</span>&#123;</span><br><span class="line">		<span class="attribute">font-family</span>: <span class="string">'icomoon'</span>;</span><br><span class="line">  	....</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">span</span>&#123;</span><br><span class="line">  <span class="comment">/*必需和@font-face中的格式一致*/</span></span><br><span class="line">  <span class="attribute">font-family</span>: <span class="string">'icomoon'</span>;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">color</span>:pink</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="三角"><a href="#三角" class="headerlink" title="三角"></a>三角</h1><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">            <span class="attribute">width</span>: <span class="number">0</span>;</span><br><span class="line">            <span class="attribute">height</span>: <span class="number">0</span>;</span><br><span class="line">            <span class="attribute">border</span>: <span class="number">50px</span> solid transparent;</span><br><span class="line">            <span class="attribute">border-left-color</span>: pink;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-<h1 id="鼠标样式"><a href="#鼠标样式" class="headerlink" title="鼠标样式"></a>鼠标样式</h1><ul>
-<li>cursor:;</li>
-</ul>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>属性值</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>default</td>
-<td>默认</td>
-</tr>
-<tr>
-<td>pointer</td>
-<td>小手</td>
-</tr>
-<tr>
-<td>move</td>
-<td>移动</td>
-</tr>
-<tr>
-<td>text</td>
-<td>文本</td>
-</tr>
-<tr>
-<td>not-allowed</td>
-<td>禁止</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h1 id="表单的轮廓线和文本域拖拽"><a href="#表单的轮廓线和文本域拖拽" class="headerlink" title="表单的轮廓线和文本域拖拽"></a>表单的轮廓线和文本域拖拽</h1><ul>
-<li>outline: 0|none ;鼠标点击后就不会再出现蓝色边框</li>
-<li>realize: none;文本域右下角取消拖拽</li>
-</ul>
-<h1 id="vertical-align-属性应用"><a href="#vertical-align-属性应用" class="headerlink" title="vertical-align 属性应用"></a>vertical-align 属性应用</h1><ul>
-<li>针对行内元素或行内块元素有效</li>
-<li>设置一个元素的垂直对齐方式</li>
-</ul>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>值</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>baseline</td>
-<td>默认</td>
-</tr>
-<tr>
-<td>top</td>
-<td>把元素的顶端与行中最高元素的顶端对齐</td>
-</tr>
-<tr>
-<td>middle</td>
-<td>把此元素放置在父元素的中部</td>
-</tr>
-<tr>
-<td>bottom</td>
-<td>把元素的顶端与行中最低的元素的顶端对齐</td>
-</tr>
-</tbody>
-</table>
-</div>
-<ul>
-<li><p>改动的是文字前面的盒子</p>
 </li>
-<li><p>解决图片底部默认空白缝隙问题</p>
-<ul>
-<li>原因是行内块元素会和文字的基线对齐</li>
-<li>主要解决办法<ul>
-<li>给图片添加vertical-align:middle|top|bottom等（提倡）</li>
-<li>把图片转换为块级元素 display:block</li>
+<li>粘性定位sticky（了解，兼容性差）<ul>
+<li>以可视窗口为参照点移动元素</li>
+<li>占有原先位置</li>
+<li>必需添加left\right\top\bottom中的一个才行</li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
-<h1 id="溢出的文字用省略号显示"><a href="#溢出的文字用省略号显示" class="headerlink" title="溢出的文字用省略号显示"></a>溢出的文字用省略号显示</h1><ul>
-<li>单行文本溢出<ol>
-<li>先强制文字在一行内显示<code>white-space: nowrap;</code></li>
-<li>超出部分隐藏<code>overflow:hidden</code></li>
-<li>文字用省略号代替超出部分<code>text-overflow:ellipsis</code></li>
-</ol>
+<h1 id="子绝父相"><a href="#子绝父相" class="headerlink" title="子绝父相"></a>子绝父相</h1><ul>
+<li>子级绝对定位，不会占有位置，可以放到父盒子里面的任何一个地方，不会影响其他的兄弟盒子</li>
+<li>父盒子需要加定位限制盒子在父盒子内显示</li>
+<li>父盒子布局时，需要占有位置，因此父亲只能是相对定位</li>
+</ul>
+<h1 id="定位叠放次序"><a href="#定位叠放次序" class="headerlink" title="定位叠放次序"></a>定位叠放次序</h1><ul>
+<li>如果属性相同，按照书写先后顺序，后面写的在上面</li>
+<li>z - index数字越大盒子越靠上</li>
+</ul>
+<h1 id="定位的拓展"><a href="#定位的拓展" class="headerlink" title="定位的拓展"></a>定位的拓展</h1><ul>
+<li>绝对定位的盒子居中<ul>
+<li>加了绝对定位的盒子不能通过margin: 0 auto水平居中</li>
+<li>水平居中：left:50% margin-left:-(盒子的一半)</li>
+<li>整体居中：再加一个top:50% margin-top:-(盒子的一半)</li>
+</ul>
 </li>
-<li>多行文本溢出显示省略号<ul>
-<li>有较大兼容性问题，适合webKit或移动端</li>
-<li>更推荐让后台人员做这个效果，因为后台人员可以设置显示多少个字，操作更简单</li>
+<li>定位特殊特性<ul>
+<li>行内元素添加绝对或者固定定位，可以直接设置高度和宽度</li>
+<li>块级元素添加绝对或固定定位，如果不给宽度或者高度，默认大小是内容的大小</li>
+<li>脱标的盒子不会造成塌陷</li>
+</ul>
+</li>
+<li>绝对定位和固定定位会完全压住盒子<ul>
+<li>浮动的元素不会压住下面标准流的文字<ul>
+<li>浮动之所以不会压住文字，因为浮动产生的目的最初是为了做文字环绕效果的，文字会围绕元素</li>
+</ul>
+</li>
+<li>绝对定位或固定定位会压住</li>
 </ul>
 </li>
 </ul>
-<h1 id="常见布局技巧"><a href="#常见布局技巧" class="headerlink" title="常见布局技巧"></a>常见布局技巧</h1><ul>
-<li><p>margin负值</p>
-<ul>
-<li>用-1px隐藏像素</li>
-<li>如果用了这个方法，边框会被压住</li>
-<li>如果没有定位，用hover时改为相对定位解决</li>
-<li>或者提高层级<code>z-index:1</code></li>
-</ul>
-</li>
-<li><p>巧妙运动浮动元素不会压住文字的特性</p>
-</li>
-<li><p>行内块元素巧妙运用</p>
-<ul>
-<li>页底翻页</li>
-</ul>
-</li>
-<li><p>三角强化</p>
-<ul>
-<li>直角三角形</li>
-</ul>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">            <span class="attribute">width</span>: <span class="number">0</span>;</span><br><span class="line">            <span class="attribute">height</span>: <span class="number">0</span>;</span><br><span class="line">            <span class="attribute">border-top</span>: <span class="number">100px</span> solid transparent;</span><br><span class="line">            <span class="attribute">border-bottom</span>: <span class="number">0</span> solid;</span><br><span class="line">            <span class="attribute">border-left</span>: <span class="number">0</span> solid;</span><br><span class="line">            <span class="attribute">border-right</span>: <span class="number">50px</span> solid greenyellow;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
+<h1 id="定位练习"><a href="#定位练习" class="headerlink" title="定位练习"></a>定位练习</h1><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*实现两个按钮一个在屏幕右一个在屏幕左的效果*/</span></span><br><span class="line"><span class="selector-class">.prev</span>,</span><br><span class="line">        <span class="selector-class">.next</span> &#123;</span><br><span class="line">            <span class="attribute">position</span>: absolute;</span><br><span class="line">            <span class="attribute">top</span>: <span class="number">50%</span>;</span><br><span class="line">            <span class="attribute">margin-top</span>: -<span class="number">15px</span>;</span><br><span class="line">            <span class="attribute">width</span>: <span class="number">20px</span>;</span><br><span class="line">            <span class="attribute">height</span>: <span class="number">30px</span>;</span><br><span class="line">            <span class="attribute">background-color</span>: <span class="built_in">rgba</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, .<span class="number">3</span>);</span><br><span class="line">            <span class="attribute">text-decoration</span>: none;</span><br><span class="line">            <span class="attribute">color</span>: white;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="selector-class">.prev</span> &#123;</span><br><span class="line">            <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">            <span class="attribute">border-radius</span>: <span class="number">0</span> <span class="number">15px</span> <span class="number">15px</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="selector-class">.next</span> &#123;</span><br><span class="line">            <span class="attribute">right</span>: <span class="number">0</span>;</span><br><span class="line">            <span class="attribute">border-radius</span>: <span class="number">15px</span> <span class="number">0</span> <span class="number">0</span> <span class="number">15px</span>;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -378,12 +311,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/01/18/7-%E5%AE%9A%E4%BD%8D/" rel="prev" title="7.定位">
-      <i class="fa fa-chevron-left"></i> 7.定位
+    <a href="/2021/01/16/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="prev" title="神经网络">
+      <i class="fa fa-chevron-left"></i> 神经网络
     </a></div>
       <div class="post-nav-item">
-    <a href="/2021/01/19/9-CSS%E5%88%9D%E5%A7%8B%E5%8C%96/" rel="next" title="9.CSS初始化">
-      9.CSS初始化 <i class="fa fa-chevron-right"></i>
+    <a href="/2021/01/18/%E9%AB%98%E7%BA%A7css%E6%8A%80%E5%B7%A7/" rel="next" title="高级css技巧">
+      高级css技巧 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -443,7 +376,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#精灵图使用"><span class="nav-number">1.</span> <span class="nav-text">精灵图使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#字体图标"><span class="nav-number">2.</span> <span class="nav-text">字体图标</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三角"><span class="nav-number">3.</span> <span class="nav-text">三角</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#鼠标样式"><span class="nav-number">4.</span> <span class="nav-text">鼠标样式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#表单的轮廓线和文本域拖拽"><span class="nav-number">5.</span> <span class="nav-text">表单的轮廓线和文本域拖拽</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vertical-align-属性应用"><span class="nav-number">6.</span> <span class="nav-text">vertical-align 属性应用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#溢出的文字用省略号显示"><span class="nav-number">7.</span> <span class="nav-text">溢出的文字用省略号显示</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常见布局技巧"><span class="nav-number">8.</span> <span class="nav-text">常见布局技巧</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么需要定位"><span class="nav-number">1.</span> <span class="nav-text">为什么需要定位</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#子绝父相"><span class="nav-number">2.</span> <span class="nav-text">子绝父相</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定位叠放次序"><span class="nav-number">3.</span> <span class="nav-text">定位叠放次序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定位的拓展"><span class="nav-number">4.</span> <span class="nav-text">定位的拓展</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定位练习"><span class="nav-number">5.</span> <span class="nav-text">定位练习</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -459,14 +392,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-count">22</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>

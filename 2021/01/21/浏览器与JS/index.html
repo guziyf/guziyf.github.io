@@ -20,20 +20,20 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="为什么需要定位 某个元素可以自由的在一个盒子内移动，并且压住其他盒子  有些盒子固定在屏幕中的位置  定位的组成  定位&#x3D;定位模式+边偏移  定位模式用于指定一个元素在文档中的定位方式。边偏移则决定了该元素的最终位置  定位模式通过position属性设置 | 值       | 语义     || ———— | ———— || static   | 静态定位 || relative | 相对定位">
+  <meta name="description" content="浏览器分成两部分  渲染引擎 用来解析HTML与CSS，俗称内核，如chrome的blink   JS引擎 也称JS解释器，读取代码后对其处理，如chrome的V8   JS的组成 ECMAScript（JavaScript语法） DOM（页面文档对象模型） 通过DOM提供的接口对页面中各种元素进行操作   BOM（浏览器对象模型） 操作浏览器窗口，比如弹对话框、跳转">
 <meta property="og:type" content="article">
-<meta property="og:title" content="7.定位">
-<meta property="og:url" content="http://yoursite.com/2021/01/18/7-%E5%AE%9A%E4%BD%8D/index.html">
+<meta property="og:title" content="浏览器与JS">
+<meta property="og:url" content="http://yoursite.com/2021/01/21/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%8EJS/index.html">
 <meta property="og:site_name" content="古子の博客">
-<meta property="og:description" content="为什么需要定位 某个元素可以自由的在一个盒子内移动，并且压住其他盒子  有些盒子固定在屏幕中的位置  定位的组成  定位&#x3D;定位模式+边偏移  定位模式用于指定一个元素在文档中的定位方式。边偏移则决定了该元素的最终位置  定位模式通过position属性设置 | 值       | 语义     || ———— | ———— || static   | 静态定位 || relative | 相对定位">
+<meta property="og:description" content="浏览器分成两部分  渲染引擎 用来解析HTML与CSS，俗称内核，如chrome的blink   JS引擎 也称JS解释器，读取代码后对其处理，如chrome的V8   JS的组成 ECMAScript（JavaScript语法） DOM（页面文档对象模型） 通过DOM提供的接口对页面中各种元素进行操作   BOM（浏览器对象模型） 操作浏览器窗口，比如弹对话框、跳转">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-01-18T04:06:00.000Z">
-<meta property="article:modified_time" content="2021-01-18T09:32:49.000Z">
+<meta property="article:published_time" content="2021-01-21T11:31:54.000Z">
+<meta property="article:modified_time" content="2021-01-21T11:57:06.328Z">
 <meta property="article:author" content="Wang QiAn">
 <meta property="article:tag" content="guziyf">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/2021/01/18/7-%E5%AE%9A%E4%BD%8D/">
+<link rel="canonical" href="http://yoursite.com/2021/01/21/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%8EJS/">
 
 
 <script id="page-configurations">
@@ -46,7 +46,7 @@
   };
 </script>
 
-  <title>7.定位 | 古子の博客</title>
+  <title>浏览器与JS | 古子の博客</title>
   
 
 
@@ -162,7 +162,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/18/7-%E5%AE%9A%E4%BD%8D/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/21/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%8EJS/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="http://image.guziyf.com/avatar">
@@ -175,7 +175,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          7.定位
+          浏览器与JS
         </h1>
 
         <div class="post-meta">
@@ -186,7 +186,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-01-18 12:06:00 / 修改时间：17:32:49" itemprop="dateCreated datePublished" datetime="2021-01-18T12:06:00+08:00">2021-01-18</time>
+              <time title="创建时间：2021-01-21 19:31:54 / 修改时间：19:57:06" itemprop="dateCreated datePublished" datetime="2021-01-21T19:31:54+08:00">2021-01-21</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -209,87 +209,29 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="为什么需要定位"><a href="#为什么需要定位" class="headerlink" title="为什么需要定位"></a>为什么需要定位</h1><ul>
-<li><p>某个元素可以自由的在一个盒子内移动，并且压住其他盒子</p>
-</li>
-<li><p>有些盒子固定在屏幕中的位置</p>
-</li>
-<li><p>定位的组成</p>
+        <p>浏览器分成两部分</p>
 <ul>
-<li><p>定位=定位模式+边偏移</p>
-</li>
-<li><p>定位模式用于指定一个元素在文档中的定位方式。边偏移则决定了该元素的最终位置</p>
-</li>
-<li><p>定位模式通过position属性设置</p>
-<p>| 值       | 语义     |<br>| ———— | ———— |<br>| static   | 静态定位 |<br>| relative | 相对定位 |<br>| absolute | 绝对定位 |<br>| fixed    | 固定定位 |</p>
-</li>
-<li><p>边偏移有top、bottom、left和right4个属性，分别表示相对于父元素边线的距离</p>
-</li>
-<li>静态定位static<ul>
-<li>按照标准流特性摆放，没有边偏移</li>
-<li>很少在布局中使用</li>
+<li>渲染引擎<ul>
+<li>用来解析HTML与CSS，俗称内核，如chrome的blink</li>
 </ul>
 </li>
-<li>相对定位relative<ul>
-<li>相对于它原来的位置</li>
-<li>原来的位置在标准流中继续占有，不脱标</li>
-<li>最典型的应用是个给绝对定位当爹</li>
+<li>JS引擎<ul>
+<li>也称JS解释器，读取代码后对其处理，如chrome的V8</li>
 </ul>
 </li>
-<li>绝对定位absolute<ul>
-<li>相对于祖先元素来说</li>
-<li>如果没有祖元素，或祖元素没有定位，则以浏览器定位</li>
-<li>如果祖元素有定位（相对、绝对、固定定位），则以最近一级的有定位祖先元素为参考点移动位置</li>
+<li>JS的组成<ul>
+<li>ECMAScript（JavaScript语法）</li>
+<li>DOM（页面文档对象模型）<ul>
+<li>通过DOM提供的接口对页面中各种元素进行操作</li>
 </ul>
 </li>
-<li>固定定位fixed<ul>
-<li>固定在浏览器可视区</li>
-<li>跟父元素没有关系</li>
-<li>不能滚动条滚动</li>
-<li>还可以和版心始终贴在一起，让固定定位的盒子left: 50%. 走到浏览器可视区的一半位置；让固定定位的盒子margin-left版心宽度的一半距离，多走版心宽度的一半位置</li>
-</ul>
-</li>
-<li>粘性定位sticky（了解，兼容性差）<ul>
-<li>以可视窗口为参照点移动元素</li>
-<li>占有原先位置</li>
-<li>必需添加left\right\top\bottom中的一个才行</li>
+<li>BOM（浏览器对象模型）<ul>
+<li>操作浏览器窗口，比如弹对话框、跳转</li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
-<h1 id="子绝父相"><a href="#子绝父相" class="headerlink" title="子绝父相"></a>子绝父相</h1><ul>
-<li>子级绝对定位，不会占有位置，可以放到父盒子里面的任何一个地方，不会影响其他的兄弟盒子</li>
-<li>父盒子需要加定位限制盒子在父盒子内显示</li>
-<li>父盒子布局时，需要占有位置，因此父亲只能是相对定位</li>
-</ul>
-<h1 id="定位叠放次序"><a href="#定位叠放次序" class="headerlink" title="定位叠放次序"></a>定位叠放次序</h1><ul>
-<li>如果属性相同，按照书写先后顺序，后面写的在上面</li>
-<li>z - index数字越大盒子越靠上</li>
-</ul>
-<h1 id="定位的拓展"><a href="#定位的拓展" class="headerlink" title="定位的拓展"></a>定位的拓展</h1><ul>
-<li>绝对定位的盒子居中<ul>
-<li>加了绝对定位的盒子不能通过margin: 0 auto水平居中</li>
-<li>水平居中：left:50% margin-left:-(盒子的一半)</li>
-<li>整体居中：再加一个top:50% margin-top:-(盒子的一半)</li>
-</ul>
-</li>
-<li>定位特殊特性<ul>
-<li>行内元素添加绝对或者固定定位，可以直接设置高度和宽度</li>
-<li>块级元素添加绝对或固定定位，如果不给宽度或者高度，默认大小是内容的大小</li>
-<li>脱标的盒子不会造成塌陷</li>
-</ul>
-</li>
-<li>绝对定位和固定定位会完全压住盒子<ul>
-<li>浮动的元素不会压住下面标准流的文字<ul>
-<li>浮动之所以不会压住文字，因为浮动产生的目的最初是为了做文字环绕效果的，文字会围绕元素</li>
-</ul>
-</li>
-<li>绝对定位或固定定位会压住</li>
-</ul>
-</li>
-</ul>
-<h1 id="定位练习"><a href="#定位练习" class="headerlink" title="定位练习"></a>定位练习</h1><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*实现两个按钮一个在屏幕右一个在屏幕左的效果*/</span></span><br><span class="line"><span class="selector-class">.prev</span>,</span><br><span class="line">        <span class="selector-class">.next</span> &#123;</span><br><span class="line">            <span class="attribute">position</span>: absolute;</span><br><span class="line">            <span class="attribute">top</span>: <span class="number">50%</span>;</span><br><span class="line">            <span class="attribute">margin-top</span>: -<span class="number">15px</span>;</span><br><span class="line">            <span class="attribute">width</span>: <span class="number">20px</span>;</span><br><span class="line">            <span class="attribute">height</span>: <span class="number">30px</span>;</span><br><span class="line">            <span class="attribute">background-color</span>: <span class="built_in">rgba</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, .<span class="number">3</span>);</span><br><span class="line">            <span class="attribute">text-decoration</span>: none;</span><br><span class="line">            <span class="attribute">color</span>: white;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="selector-class">.prev</span> &#123;</span><br><span class="line">            <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">            <span class="attribute">border-radius</span>: <span class="number">0</span> <span class="number">15px</span> <span class="number">15px</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="selector-class">.next</span> &#123;</span><br><span class="line">            <span class="attribute">right</span>: <span class="number">0</span>;</span><br><span class="line">            <span class="attribute">border-radius</span>: <span class="number">15px</span> <span class="number">0</span> <span class="number">0</span> <span class="number">15px</span>;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -305,13 +247,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/01/17/6-%E5%AD%A6%E6%88%90%E5%9C%A8%E7%BA%BF%E6%A1%88%E4%BE%8B/" rel="prev" title="6.学成在线案例">
-      <i class="fa fa-chevron-left"></i> 6.学成在线案例
+    <a href="/2021/01/20/flex%E5%B8%83%E5%B1%80/" rel="prev" title="flex布局">
+      <i class="fa fa-chevron-left"></i> flex布局
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/01/18/8-%E9%AB%98%E7%BA%A7css%E6%8A%80%E5%B7%A7/" rel="next" title="8.高级css技巧">
-      8.高级css技巧 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -370,7 +309,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么需要定位"><span class="nav-number">1.</span> <span class="nav-text">为什么需要定位</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#子绝父相"><span class="nav-number">2.</span> <span class="nav-text">子绝父相</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定位叠放次序"><span class="nav-number">3.</span> <span class="nav-text">定位叠放次序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定位的拓展"><span class="nav-number">4.</span> <span class="nav-text">定位的拓展</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定位练习"><span class="nav-number">5.</span> <span class="nav-text">定位练习</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -386,14 +324,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-count">22</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
