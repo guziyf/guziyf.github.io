@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="1.什么是神经网络 人工神经网络不能产生新的链接 生物神经网络自反馈，生成新网络 刺激函数、刺激行为  梯度下降机制 斜率就是梯度，向下到一个位置再做切线 简化版的只要找到梯度躺平的点  神经网络的黑盒不黑 加工过程就是黑盒 一次次代表特征的转换 当代表特征太多时，人眼看不过来，只能让计算机识别  2.给电脑安装tensorflow">
+  <meta name="description" content="1、梯度下降梯度下降算法核心公式: xn+1&#x3D; xn - f&#96;(x)* (learning rate)  其中learning rate通常取0.001，手写数据一般0.01。它的取值会影响下降的速度（步长)，取值过大会出现大的抖动。x不断更新，当x在最优解（极值点）附近时梯度会接近于0，x取值在一个小范围内抖动。 loss&#x3D;(w·x+b-y)^2 求解w和b使loss取极小值   2、创建Ten">
 <meta property="og:type" content="article">
 <meta property="og:title" content="神经网络">
 <meta property="og:url" content="http://yoursite.com/2021/01/16/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/index.html">
 <meta property="og:site_name" content="古子の博客">
-<meta property="og:description" content="1.什么是神经网络 人工神经网络不能产生新的链接 生物神经网络自反馈，生成新网络 刺激函数、刺激行为  梯度下降机制 斜率就是梯度，向下到一个位置再做切线 简化版的只要找到梯度躺平的点  神经网络的黑盒不黑 加工过程就是黑盒 一次次代表特征的转换 当代表特征太多时，人眼看不过来，只能让计算机识别  2.给电脑安装tensorflow">
+<meta property="og:description" content="1、梯度下降梯度下降算法核心公式: xn+1&#x3D; xn - f&#96;(x)* (learning rate)  其中learning rate通常取0.001，手写数据一般0.01。它的取值会影响下降的速度（步长)，取值过大会出现大的抖动。x不断更新，当x在最优解（极值点）附近时梯度会接近于0，x取值在一个小范围内抖动。 loss&#x3D;(w·x+b-y)^2 求解w和b使loss取极小值   2、创建Ten">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-01-16T10:47:56.000Z">
-<meta property="article:modified_time" content="2021-01-17T02:40:36.354Z">
+<meta property="article:modified_time" content="2021-03-09T04:21:07.012Z">
 <meta property="article:author" content="Wang QiAn">
 <meta property="article:tag" content="guziyf">
 <meta name="twitter:card" content="summary">
@@ -192,7 +192,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-01-17 10:40:36" itemprop="dateModified" datetime="2021-01-17T10:40:36+08:00">2021-01-17</time>
+                <time title="修改时间：2021-03-09 12:21:07" itemprop="dateModified" datetime="2021-03-09T12:21:07+08:00">2021-03-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -215,21 +215,117 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="1-什么是神经网络"><a href="#1-什么是神经网络" class="headerlink" title="1.什么是神经网络"></a>1.什么是神经网络</h1><ul>
-<li>人工神经网络不能产生新的链接</li>
-<li>生物神经网络自反馈，生成新网络</li>
-<li>刺激函数、刺激行为</li>
+        <h1 id="1、梯度下降"><a href="#1、梯度下降" class="headerlink" title="1、梯度下降"></a>1、梯度下降</h1><p>梯度下降算法核心公式:</p>
+<p>xn+1= xn - f`(x)* (learning rate)</p>
+<ul>
+<li><p>其中learning rate通常取0.001，手写数据一般0.01。它的取值会影响下降的速度（步长)，取值过大会出现大的抖动。x不断更新，当x在最优解（极值点）附近时梯度会接近于0，x取值在一个小范围内抖动。</p>
+<p>loss=(w·x+b-y)^2 求解w和b使loss取极小值</p>
+</li>
 </ul>
-<h3 id="梯度下降机制"><a href="#梯度下降机制" class="headerlink" title="梯度下降机制"></a>梯度下降机制</h3><ul>
-<li>斜率就是梯度，向下到一个位置再做切线</li>
-<li>简化版的只要找到梯度躺平的点</li>
+<h1 id="2、创建Tensor"><a href="#2、创建Tensor" class="headerlink" title="2、创建Tensor"></a>2、创建Tensor</h1><ul>
+<li>从numpy中引入</li>
 </ul>
-<h3 id="神经网络的黑盒不黑"><a href="#神经网络的黑盒不黑" class="headerlink" title="神经网络的黑盒不黑"></a>神经网络的黑盒不黑</h3><ul>
-<li>加工过程就是黑盒</li>
-<li>一次次代表特征的转换</li>
-<li>当代表特征太多时，人眼看不过来，只能让计算机识别</li>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;<span class="keyword">import</span> torch</span><br><span class="line">&gt;&gt;&gt;<span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">&gt;&gt;&gt;a = np.array([<span class="number">2</span>,<span class="number">3.3</span>])</span><br><span class="line">&gt;&gt;&gt;torch.from_numpy(a)</span><br><span class="line"></span><br><span class="line">tensor([<span class="number">2.0000</span>, <span class="number">3.3000</span>], dtype=torch.float64)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>从list中引入</li>
 </ul>
-<h1 id="2-给电脑安装tensorflow"><a href="#2-给电脑安装tensorflow" class="headerlink" title="2.给电脑安装tensorflow"></a>2.给电脑安装tensorflow</h1>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;torch.tensor([<span class="number">2</span>,<span class="number">3.2</span>]) <span class="comment">#区分：FloatTensor 指定shape  用小写指定数据</span></span><br><span class="line"></span><br><span class="line">tensor([<span class="number">2.0000</span>, <span class="number">3.2000</span>])</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt;torch.FloatTensor(<span class="number">2</span>,<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">tensor([[<span class="number">5.1027e-08</span>, <span class="number">4.9116e-14</span>, <span class="number">2.4979e-38</span>],</span><br><span class="line">        [<span class="number">2.3518e-38</span>, <span class="number">1.5046e-36</span>, <span class="number">1.7636e+25</span>]])</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>随机初始化</p>
+<p>rand 0-1之间均匀sample 设置shape例如（3，3）<br>rand_like 对象是一个tensor<br>randint 三个参数 最小值(包括)，最大值（不包括），shape（例如[3,3]）<br>randn 正态分布 设置shape例如（3，3）</p>
+</li>
+<li><p>full</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;torch.full([<span class="number">2</span>,<span class="number">3</span>],<span class="number">8</span>)</span><br><span class="line"></span><br><span class="line">tensor([[<span class="number">8.</span>, <span class="number">8.</span>, <span class="number">8.</span>],</span><br><span class="line">        [<span class="number">8.</span>, <span class="number">8.</span>, <span class="number">8.</span>]])</span><br></pre></td></tr></table></figure>
+<ul>
+<li>arange</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;torch.arange(<span class="number">0</span>,<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">tensor([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>])</span><br></pre></td></tr></table></figure>
+<ul>
+<li>ones/zero/eye</li>
+</ul>
+<p>eye 对角是1 只能接受1or2个参数</p>
+<p>torch.ones_like(a) a是tensor</p>
+<ul>
+<li>randperm &amp; 切片&amp;索引</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;a = torch.rand(<span class="number">2</span>,<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">tensor([[<span class="number">0.8746</span>, <span class="number">0.1088</span>, <span class="number">0.2276</span>],</span><br><span class="line">        [<span class="number">0.0799</span>, <span class="number">0.4809</span>, <span class="number">0.4474</span>]])</span><br><span class="line">       </span><br><span class="line">&gt;&gt;&gt;idex = torch.randperm(<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">tensor([<span class="number">0</span>, <span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt;a[idex]</span><br><span class="line"></span><br><span class="line">tensor([[<span class="number">0.8746</span>, <span class="number">0.1088</span>, <span class="number">0.2276</span>],</span><br><span class="line">        [<span class="number">0.0799</span>, <span class="number">0.4809</span>, <span class="number">0.4474</span>]])</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;a=torch.rand(<span class="number">4</span>,<span class="number">3</span>,<span class="number">28</span>,<span class="number">28</span>) <span class="comment">#4张图片，3个通道，28x28</span></span><br><span class="line">&gt;&gt;&gt;a[<span class="number">0</span>]  <span class="comment">#第一张图片</span></span><br><span class="line">&gt;&gt;&gt;a[:<span class="number">2</span>]<span class="comment"># 从0开始不包括2，即0，1   只对第一个参数有效</span></span><br><span class="line">&gt;&gt;&gt;a[:<span class="number">2</span>,<span class="number">1</span>:,<span class="number">-1</span>:,:]  <span class="comment">#纯：表示全部， </span></span><br><span class="line"><span class="comment">#1: 从1到最后   -1是反向检索，  ... -3-2-1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;a=torch.rand(<span class="number">4</span>,<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">tensor([[<span class="number">0.0452</span>, <span class="number">0.3856</span>],</span><br><span class="line">        [<span class="number">0.3025</span>, <span class="number">0.4022</span>],</span><br><span class="line">        [<span class="number">0.7373</span>, <span class="number">0.3566</span>],</span><br><span class="line">        [<span class="number">0.0446</span>, <span class="number">0.7041</span>]])</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt;a[<span class="number">0</span>:<span class="number">4</span>:<span class="number">2</span>]<span class="comment">#连在一起没有逗号</span></span><br><span class="line"></span><br><span class="line">tensor([[<span class="number">0.0452</span>, <span class="number">0.3856</span>],</span><br><span class="line">        [<span class="number">0.7373</span>, <span class="number">0.3566</span>]])</span><br><span class="line"><span class="comment"># 0:28:2     从0到28，不包括28，每隔2个取一次</span></span><br><span class="line">&gt;&gt;&gt;a[<span class="number">0</span>:<span class="number">4</span>:<span class="number">3</span>]</span><br><span class="line"></span><br><span class="line">tensor([[<span class="number">0.0452</span>, <span class="number">0.3856</span>],</span><br><span class="line">        [<span class="number">0.0446</span>, <span class="number">0.7041</span>]])</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;a.index_select(<span class="number">0</span>,torch.tensor([<span class="number">0</span>,<span class="number">2</span>])).shape<span class="comment">#list必须转化成tensor  </span></span><br><span class="line">					   <span class="comment">#表示第0个维度，第0个和第2个</span></span><br><span class="line">torch.Size([<span class="number">2</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">2</span>])</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;a[...].shape<span class="comment">#代表除了标明的范围，其余所有都是all</span></span><br><span class="line">torch.Size([<span class="number">4</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">2</span>])</span><br><span class="line">&gt;&gt;&gt;a[<span class="number">0</span>,...].shape <span class="comment">#如果用冒号＋逗号非常麻烦</span></span><br><span class="line">torch.Size([<span class="number">3</span>, <span class="number">2</span>, <span class="number">2</span>])</span><br><span class="line">&gt;&gt;&gt;a[<span class="number">0</span>,...,::<span class="number">2</span>].shape</span><br><span class="line">torch.Size([<span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>])</span><br></pre></td></tr></table></figure>
+<h1 id="3、维度变化"><a href="#3、维度变化" class="headerlink" title="3、维度变化"></a>3、维度变化</h1><p>a.view(4,1*28*28)行宽通道和在一起torch.Size([4,784])方便全链接层</p>
+<p>a.view(4*1*28, 28).shape</p>
+<ul>
+<li><p>Squeeze压缩维度</p>
+<ul>
+<li>挤压掉一个维度</li>
+</ul>
+</li>
+<li><p>unsqueeze扩大维度</p>
+<ul>
+<li><p>a.unsqueeze(0).shape</p>
+<ul>
+<li>torch.Size([1,4,1,28,28])</li>
+</ul>
+</li>
+<li><p>a.unsqueeze(-1).shape</p>
+<ul>
+<li>torch.Size([4,1,28,28,1])在-1，28的后面插入</li>
+</ul>
+<p>| Pos.Idx | 0    | 1    | 2    | 3    |<br>| ———- | —— | —— | —— | —— |<br>|         | 4    | 3    | 28   | 28   |<br>| Neg.Idx | -4   | -3   | -2   | -1   |</p>
+</li>
+</ul>
+</li>
+<li><p>Expand，速度快，节约内存</p>
+<ul>
+<li>a=torch.rand(4,32,14,14)</li>
+<li>b.shape</li>
+<li>torch.Size([1,32,1,1])</li>
+<li>b.expend(4,32,14,14).shape</li>
+<li>-1表示当前维度不变，如果写-4会生成-4</li>
+</ul>
+</li>
+<li>Repeat</li>
+<li>transpose(1,3).view(4,3*32*32).view(4,3,32,32)（错了，再来一个transpose(1,3)）<ul>
+<li>维度的先后顺序要跟踪住</li>
+</ul>
+</li>
+<li>permute</li>
+</ul>
+<h1 id="4、自动扩展"><a href="#4、自动扩展" class="headerlink" title="4、自动扩展"></a>4、自动扩展</h1><p>从右往左依次对齐，在最后一位扩张维度。<br>unsquee插入维度 + expand复制数据（并不是真的复制，是逻辑复制）</p>
+<p>给每个学生的所有成绩加5分 [class,student,score]</p>
+<ul>
+<li><p>A[4，32，8]+score [5.0]</p>
+<ul>
+<li>score.unsqueeze(0).unsqueeze(0).expand_as(A)</li>
+</ul>
+</li>
+<li><p>不适用的情况：<br>[4，32，14，14]<br>[2，32，14，14]</p>
+</li>
+</ul>
+<h1 id="5、拼接与拆分"><a href="#5、拼接与拆分" class="headerlink" title="5、拼接与拆分"></a>5、拼接与拆分</h1><ul>
+<li><p>Cat</p>
+<ul>
+<li>torch.cat是将两个张量（tensor）拼接在一起</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> torch</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>A=torch.ones(<span class="number">2</span>,<span class="number">3</span>) <span class="comment">#2x3的张量（矩阵）                                     </span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>A</span><br><span class="line">tensor([[ <span class="number">1.</span>,  <span class="number">1.</span>,  <span class="number">1.</span>],</span><br><span class="line">        [ <span class="number">1.</span>,  <span class="number">1.</span>,  <span class="number">1.</span>]])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>B=<span class="number">2</span>*torch.ones(<span class="number">4</span>,<span class="number">3</span>)<span class="comment">#4x3的张量（矩阵）                                    </span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>B</span><br><span class="line">tensor([[ <span class="number">2.</span>,  <span class="number">2.</span>,  <span class="number">2.</span>],</span><br><span class="line">        [ <span class="number">2.</span>,  <span class="number">2.</span>,  <span class="number">2.</span>],</span><br><span class="line">        [ <span class="number">2.</span>,  <span class="number">2.</span>,  <span class="number">2.</span>],</span><br><span class="line">        [ <span class="number">2.</span>,  <span class="number">2.</span>,  <span class="number">2.</span>]])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>C=torch.cat((A,B),<span class="number">0</span>)<span class="comment">#按维数0（行）拼接</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>C</span><br><span class="line">tensor([[ <span class="number">1.</span>,  <span class="number">1.</span>,  <span class="number">1.</span>],</span><br><span class="line">         [ <span class="number">1.</span>,  <span class="number">1.</span>,  <span class="number">1.</span>],</span><br><span class="line">         [ <span class="number">2.</span>,  <span class="number">2.</span>,  <span class="number">2.</span>],</span><br><span class="line">         [ <span class="number">2.</span>,  <span class="number">2.</span>,  <span class="number">2.</span>],</span><br><span class="line">         [ <span class="number">2.</span>,  <span class="number">2.</span>,  <span class="number">2.</span>],</span><br><span class="line">         [ <span class="number">2.</span>,  <span class="number">2.</span>,  <span class="number">2.</span>]])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>C.size()</span><br><span class="line">torch.Size([<span class="number">6</span>, <span class="number">3</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>D=<span class="number">2</span>*torch.ones(<span class="number">2</span>,<span class="number">4</span>) <span class="comment">#2x4的张量（矩阵）</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>C=torch.cat((A,D),<span class="number">1</span>)<span class="comment">#按维数1（列）拼接</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>C</span><br><span class="line">tensor([[ <span class="number">1.</span>,  <span class="number">1.</span>,  <span class="number">1.</span>,  <span class="number">2.</span>,  <span class="number">2.</span>,  <span class="number">2.</span>,  <span class="number">2.</span>],</span><br><span class="line">        [ <span class="number">1.</span>,  <span class="number">1.</span>,  <span class="number">1.</span>,  <span class="number">2.</span>,  <span class="number">2.</span>,  <span class="number">2.</span>,  <span class="number">2.</span>]])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>C.size()</span><br><span class="line">torch.Size([<span class="number">2</span>, <span class="number">7</span>])</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><a href="https://blog.csdn.net/Teeyohuang/article/details/80362756?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-2.nonecase&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-2.nonecase" target="_blank" rel="noopener">Stack</a></p>
+</li>
+<li><p>Split</p>
+<ul>
+<li>按长度拆分，长度相同给定长度，长度不同用[m,n]给定</li>
+</ul>
+</li>
+<li><p>Chunk</p>
+<ul>
+<li>按数量拆分，给定数量值</li>
+</ul>
+</li>
+</ul>
+
     </div>
 
     
@@ -309,7 +405,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-什么是神经网络"><span class="nav-number">1.</span> <span class="nav-text">1.什么是神经网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#梯度下降机制"><span class="nav-number">1.0.1.</span> <span class="nav-text">梯度下降机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#神经网络的黑盒不黑"><span class="nav-number">1.0.2.</span> <span class="nav-text">神经网络的黑盒不黑</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-给电脑安装tensorflow"><span class="nav-number">2.</span> <span class="nav-text">2.给电脑安装tensorflow</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1、梯度下降"><span class="nav-number">1.</span> <span class="nav-text">1、梯度下降</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2、创建Tensor"><span class="nav-number">2.</span> <span class="nav-text">2、创建Tensor</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3、维度变化"><span class="nav-number">3.</span> <span class="nav-text">3、维度变化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4、自动扩展"><span class="nav-number">4.</span> <span class="nav-text">4、自动扩展</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5、拼接与拆分"><span class="nav-number">5.</span> <span class="nav-text">5、拼接与拆分</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
