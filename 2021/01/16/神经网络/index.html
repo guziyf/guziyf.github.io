@@ -28,7 +28,7 @@
 <meta property="og:description" content="1、梯度下降梯度下降算法核心公式: xn+1&#x3D; xn - f&#96;(x)* (learning rate)  其中learning rate通常取0.001，手写数据一般0.01。它的取值会影响下降的速度（步长)，取值过大会出现大的抖动。x不断更新，当x在最优解（极值点）附近时梯度会接近于0，x取值在一个小范围内抖动。 loss&#x3D;(w·x+b-y)^2 求解w和b使loss取极小值   2、创建Ten">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-01-16T10:47:56.000Z">
-<meta property="article:modified_time" content="2021-03-09T04:21:07.012Z">
+<meta property="article:modified_time" content="2021-03-24T08:18:19.711Z">
 <meta property="article:author" content="Wang QiAn">
 <meta property="article:tag" content="guziyf">
 <meta name="twitter:card" content="summary">
@@ -192,7 +192,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-09 12:21:07" itemprop="dateModified" datetime="2021-03-09T12:21:07+08:00">2021-03-09</time>
+                <time title="修改时间：2021-03-24 16:18:19" itemprop="dateModified" datetime="2021-03-24T16:18:19+08:00">2021-03-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -288,7 +288,8 @@
 </ul>
 </li>
 <li>Repeat</li>
-<li>transpose(1,3).view(4,3*32*32).view(4,3,32,32)（错了，再来一个transpose(1,3)）<ul>
+<li><p>transpose(1,3).view(4,3*32*32).view(4,3,32,32)（错了，再来一个transpose(1,3)）</p>
+<ul>
 <li>维度的先后顺序要跟踪住</li>
 </ul>
 </li>
@@ -310,13 +311,22 @@
 <ul>
 <li>torch.cat是将两个张量（tensor）拼接在一起</li>
 </ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a=torch.rand(<span class="number">4</span>,<span class="number">32</span>,<span class="number">8</span>)<span class="comment">#班级1-4班</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b=torch.rand(<span class="number">5</span>,<span class="number">32</span>,<span class="number">8</span>)<span class="comment">#班级5-9班</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>torch.cat([a,b],dim=<span class="number">0</span>).shape</span><br><span class="line"><span class="comment">#合并a，b，合并它们的第1个维度，其他维度应该是相等的</span></span><br><span class="line">torch.Size([<span class="number">9</span>,<span class="number">32</span>,<span class="number">8</span>])</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> torch</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>A=torch.ones(<span class="number">2</span>,<span class="number">3</span>) <span class="comment">#2x3的张量（矩阵）                                     </span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>A</span><br><span class="line">tensor([[ <span class="number">1.</span>,  <span class="number">1.</span>,  <span class="number">1.</span>],</span><br><span class="line">        [ <span class="number">1.</span>,  <span class="number">1.</span>,  <span class="number">1.</span>]])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>B=<span class="number">2</span>*torch.ones(<span class="number">4</span>,<span class="number">3</span>)<span class="comment">#4x3的张量（矩阵）                                    </span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>B</span><br><span class="line">tensor([[ <span class="number">2.</span>,  <span class="number">2.</span>,  <span class="number">2.</span>],</span><br><span class="line">        [ <span class="number">2.</span>,  <span class="number">2.</span>,  <span class="number">2.</span>],</span><br><span class="line">        [ <span class="number">2.</span>,  <span class="number">2.</span>,  <span class="number">2.</span>],</span><br><span class="line">        [ <span class="number">2.</span>,  <span class="number">2.</span>,  <span class="number">2.</span>]])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>C=torch.cat((A,B),<span class="number">0</span>)<span class="comment">#按维数0（行）拼接</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>C</span><br><span class="line">tensor([[ <span class="number">1.</span>,  <span class="number">1.</span>,  <span class="number">1.</span>],</span><br><span class="line">         [ <span class="number">1.</span>,  <span class="number">1.</span>,  <span class="number">1.</span>],</span><br><span class="line">         [ <span class="number">2.</span>,  <span class="number">2.</span>,  <span class="number">2.</span>],</span><br><span class="line">         [ <span class="number">2.</span>,  <span class="number">2.</span>,  <span class="number">2.</span>],</span><br><span class="line">         [ <span class="number">2.</span>,  <span class="number">2.</span>,  <span class="number">2.</span>],</span><br><span class="line">         [ <span class="number">2.</span>,  <span class="number">2.</span>,  <span class="number">2.</span>]])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>C.size()</span><br><span class="line">torch.Size([<span class="number">6</span>, <span class="number">3</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>D=<span class="number">2</span>*torch.ones(<span class="number">2</span>,<span class="number">4</span>) <span class="comment">#2x4的张量（矩阵）</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>C=torch.cat((A,D),<span class="number">1</span>)<span class="comment">#按维数1（列）拼接</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>C</span><br><span class="line">tensor([[ <span class="number">1.</span>,  <span class="number">1.</span>,  <span class="number">1.</span>,  <span class="number">2.</span>,  <span class="number">2.</span>,  <span class="number">2.</span>,  <span class="number">2.</span>],</span><br><span class="line">        [ <span class="number">1.</span>,  <span class="number">1.</span>,  <span class="number">1.</span>,  <span class="number">2.</span>,  <span class="number">2.</span>,  <span class="number">2.</span>,  <span class="number">2.</span>]])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>C.size()</span><br><span class="line">torch.Size([<span class="number">2</span>, <span class="number">7</span>])</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><a href="https://blog.csdn.net/Teeyohuang/article/details/80362756?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-2.nonecase&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-2.nonecase" target="_blank" rel="noopener">Stack</a></p>
+<ul>
+<li>创建一个新的维度，如一班[32,8]，二班[32,8]，torch.stack([a,b],dim=0)合并后是[2,32,8]表示两个班级</li>
+<li>stack表示在哪个维度进行扩展</li>
+</ul>
 </li>
 <li><p>Split</p>
 <ul>
 <li>按长度拆分，长度相同给定长度，长度不同用[m,n]给定</li>
+<li>比如把[2,32,8]从1维拆回去c.split([1,1],dim=0)<ul>
+<li>[1,32,8]和[1,32,8]</li>
+</ul>
+</li>
 </ul>
 </li>
 <li><p>Chunk</p>
@@ -324,6 +334,57 @@
 <li>按数量拆分，给定数量值</li>
 </ul>
 </li>
+</ul>
+<h1 id="6、加减乘除"><a href="#6、加减乘除" class="headerlink" title="6、加减乘除"></a>6、加减乘除</h1><ul>
+<li>add、sub、mul、div</li>
+<li>也可以使用+、-、*、/</li>
+<li>矩阵相乘<ul>
+<li>Torch.matmul</li>
+<li>不管几维都可以用</li>
+</ul>
+</li>
+<li>pow函数次方<ul>
+<li>a.pow(2)</li>
+<li>a.sqrt()开方</li>
+</ul>
+</li>
+<li>自然指数exp和开log<ul>
+<li>以2为底就log2、以10就log10</li>
+</ul>
+</li>
+<li>近似值<ul>
+<li>a=torch.tensor(3.14)<ul>
+<li>向下a.floor()=3.</li>
+<li>向上a.ceil()=4.</li>
+<li>小数分数拆分a.trunc()=3.</li>
+<li>四舍五入a.frac()=0.1400</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>clamp限制<ul>
+<li>grad.clamp(10)全部大于10</li>
+<li>grad.clamp(0,10)0到10之间</li>
+</ul>
+</li>
+</ul>
+<h1 id="7、数据统计"><a href="#7、数据统计" class="headerlink" title="7、数据统计"></a>7、数据统计</h1><ul>
+<li>范数 <ul>
+<li>norm(1)所有元素个数</li>
+<li>norm(2)所有元素的值的平方和再开根号</li>
+<li>norm(1,dim=1)</li>
+</ul>
+</li>
+<li>argmax\argmin</li>
+<li>dim\keepdim</li>
+<li>topk\kthvalue</li>
+<li>大于小于等比较参考C语言<ul>
+<li>矩阵比较torch.eq(a, b)</li>
+</ul>
+</li>
+</ul>
+<h1 id="8、高阶OP"><a href="#8、高阶OP" class="headerlink" title="8、高阶OP"></a>8、高阶OP</h1><ul>
+<li>torch.where(condition,x,y)  -&gt;. Tensor<br>- </li>
 </ul>
 
     </div>
@@ -405,7 +466,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1、梯度下降"><span class="nav-number">1.</span> <span class="nav-text">1、梯度下降</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2、创建Tensor"><span class="nav-number">2.</span> <span class="nav-text">2、创建Tensor</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3、维度变化"><span class="nav-number">3.</span> <span class="nav-text">3、维度变化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4、自动扩展"><span class="nav-number">4.</span> <span class="nav-text">4、自动扩展</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5、拼接与拆分"><span class="nav-number">5.</span> <span class="nav-text">5、拼接与拆分</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1、梯度下降"><span class="nav-number">1.</span> <span class="nav-text">1、梯度下降</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2、创建Tensor"><span class="nav-number">2.</span> <span class="nav-text">2、创建Tensor</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3、维度变化"><span class="nav-number">3.</span> <span class="nav-text">3、维度变化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4、自动扩展"><span class="nav-number">4.</span> <span class="nav-text">4、自动扩展</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5、拼接与拆分"><span class="nav-number">5.</span> <span class="nav-text">5、拼接与拆分</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6、加减乘除"><span class="nav-number">6.</span> <span class="nav-text">6、加减乘除</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7、数据统计"><span class="nav-number">7.</span> <span class="nav-text">7、数据统计</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8、高阶OP"><span class="nav-number">8.</span> <span class="nav-text">8、高阶OP</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -421,14 +482,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-count">24</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
@@ -438,7 +499,7 @@
         <a href="https://github.com/guziyf" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;guziyf" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
       </span>
       <span class="links-of-author-item">
-        <a href="mailto:805170066@qq.com" title="E-Mail → mailto:805170066@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+        <a href="mailto:guziyf@163.com" title="E-Mail → mailto:guziyf@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
       </span>
   </div>
 

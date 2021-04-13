@@ -159,6 +159,587 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/04/01/Objective-C%E6%A6%82%E8%BF%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="http://image.guziyf.com/avatar">
+      <meta itemprop="name" content="Wang QiAn">
+      <meta itemprop="description" content="正视无知，消除傲慢">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="古子の博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/01/Objective-C%E6%A6%82%E8%BF%B0/" class="post-title-link" itemprop="url">Objective-C概述</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-04-01 15:53:38 / 修改时间：18:42:15" itemprop="dateCreated datePublished" datetime="2021-04-01T15:53:38+08:00">2021-04-01</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">iOS开发</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li><p>OC的本质还是C语言</p>
+<ul>
+<li>在C的基础上新增了一小部分面向对象的语法</li>
+<li>将C的语法封装的更为简单</li>
+<li>OC完全兼容C语言</li>
+</ul>
+</li>
+<li><p>m代表message，代表OC中最重要的一个机制-消息机制</p>
+</li>
+<li><p>main函数仍然是OC程序的入口和出口</p>
+<ul>
+<li>int类型的返回值代表程序的结束状态</li>
+<li>main函数的参数：仍然可以接受用户在运行程序的时候传递数据给程序<ul>
+<li>参数也可以不要</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>#import</p>
+<ul>
+<li>预处理指令</li>
+<li>作用：是#include指令的增强版，将文件的内容在预编译的时候拷贝写指令的地方</li>
+<li>同一个文件无论import多少次，只会包含一次</li>
+</ul>
+</li>
+<li><p>框架</p>
+<ul>
+<li>一个功能集，苹果或第三方将一些程序在开发程序的时候经常要用到的功能事先写好，把这些功能封装在一个类或者函数之中，这些函数和类的集合就叫框架</li>
+<li>Foundation框架<ul>
+<li>基本功能，输入输出、数据类型</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>@autoreleasepool{}自动释放池</p>
+<ul>
+<li>代码写在池中</li>
+</ul>
+</li>
+<li><p>NSLog(@”Hello, World!”);</p>
+<ul>
+<li><p>printf函数的增强版</p>
+<ul>
+<li>输出一些调试相关的信息</li>
+</ul>
+<p><code>2021-04-01 16:13:32.939802+0800 Day01-OCbase[69990:6058063] Hello, World!</code></p>
+<ul>
+<li>会自动换行，如果最后加了\n，自动换行就会失效</li>
+<li>OC中其实新增了一些数据类型</li>
+</ul>
+</li>
+<li><p>NSLog(@”语法”,变量列表);</p>
+</li>
+</ul>
+</li>
+<li><p>字符串</p>
+<ul>
+<li>NSString类型指针变量，只能存储OC字符串地址</li>
+<li>@”jack”，OC字符串前面必须要有一个@</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">NSString *str &#x3D;  @&quot;jack&quot;;</span><br><span class="line">    </span><br><span class="line">    NSLog(@&quot;hello,iam%@&quot;,str);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>NS前缀</p>
+<ul>
+<li>NextStep —-&gt;Cocoa —-&gt;foundation框架中</li>
+</ul>
+</li>
+<li><p>OC中绝大部分关键字都是以@开头</p>
+</li>
+<li><p>函数调用和C语言一样</p>
+</li>
+<li><p>类的定义</p>
+<ul>
+<li>@interface 类名 : NSobject<ul>
+<li>这类事物具有的共同的特征，将他们定义为变量</li>
+</ul>
+</li>
+<li>@end</li>
+<li>@implementation 类名<ul>
+<li>将方法的实现写在这里</li>
+</ul>
+</li>
+<li>@end</li>
+<li>为类定义变量名时，前面要加下划线_</li>
+<li>如何创建一个类的对象<ul>
+<li>Person *p1 = [Person new];</li>
+</ul>
+</li>
+<li></li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/03/26/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0tensorflow/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="http://image.guziyf.com/avatar">
+      <meta itemprop="name" content="Wang QiAn">
+      <meta itemprop="description" content="正视无知，消除傲慢">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="古子の博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/03/26/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0tensorflow/" class="post-title-link" itemprop="url">深度学习tensorflow</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-03-26 17:17:51" itemprop="dateCreated datePublished" datetime="2021-03-26T17:17:51+08:00">2021-03-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-04-01 12:44:57" itemprop="dateModified" datetime="2021-04-01T12:44:57+08:00">2021-04-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="一、概念认识"><a href="#一、概念认识" class="headerlink" title="一、概念认识"></a>一、概念认识</h1><ul>
+<li><p>神经网络：采集大量数据对构成数据集，把数据集喂入搭建好的神经网络结构，网络优化参数得到模型，模型读入新输入特征，输出识别结果。</p>
+</li>
+<li><p>损失函数可以定量的判断W、b的优劣，当损失函数输出最小时，参数W、b会出现最优值。</p>
+<ul>
+<li>常用：均方误差</li>
+<li>目的：找一组参数w和b，使损失函数最小</li>
+<li>梯度下降法：沿损失函数梯度下降的方向，寻找损失函数的最小值，得到最优参数的方法。</li>
+<li>学习率：当学习率设置的过小时，收敛过程将变得十分缓慢。而当学习率设置的过大时，梯度可能会在最小值附近来回震荡，甚至可能无法收敛。<script type="math/tex">w_{t+1}=w_t-lr*（loss偏导/w_t偏导）</script></li>
+<li>反向传播：从后向前，逐层求损失函数对每层神经元参数的偏导数，迭代更新所有参数<ul>
+<li>损失函数<script type="math/tex">loss=(w+1)^2</script>，对w的偏导是<script type="math/tex">2w+2</script></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>张量</p>
+<ul>
+<li>维数0-D，0阶，名字标量scalar，如s=1 2 3</li>
+<li>维数1-D，1阶，名字向量vector，如v=[1,2,3]</li>
+<li>维数2-D，2阶，名字矩阵matrix，如m=[[1,2,3],[4,5,6],[7,8,9]]</li>
+<li>维数N-D，N阶，名字张量tensor，如t=[[[n个</li>
+</ul>
+</li>
+<li><p>数据类型</p>
+<ul>
+<li>tf.int32</li>
+<li>tf.float32</li>
+<li>tf.float64</li>
+<li>tf.bool</li>
+<li>tf.string</li>
+</ul>
+</li>
+<li><p>创建Tensor</p>
+<ul>
+<li>tf.constant([1,5],dtype=tf.int64)<ul>
+<li>shape(2,)表示张量里有两个元素，“，”前面一个数表示是一维的</li>
+</ul>
+</li>
+<li>将numpy数据类型变成Tensor的<ul>
+<li>a = np.arange(0,5)</li>
+<li>b = tf.convert_to_tensor(a, dtype=tf.int64)</li>
+</ul>
+</li>
+<li>tf.zeros([2,3])全为0的张量</li>
+<li>tf.ones(4)全为1的张量</li>
+<li>tf.fill([2,2],9)全为指定值的张量</li>
+<li>tf.random.normal(维度，mean=均值，stddev=标准差)<ul>
+<li>([2,2],mean=0.5,stddev=1)</li>
+</ul>
+</li>
+<li>tf.random.truncated_normal(维度，mean=均值，stddev=标准差)在均值的两倍上下</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"></span><br><span class="line">d = tf.random.normal([<span class="number">2</span>, <span class="number">2</span>], mean=<span class="number">0.5</span>, stddev=<span class="number">1</span>)</span><br><span class="line">print(<span class="string">"d:"</span>, d)</span><br><span class="line">e = tf.random.truncated_normal([<span class="number">2</span>, <span class="number">2</span>], mean=<span class="number">0.5</span>, stddev=<span class="number">1</span>)</span><br><span class="line">print(<span class="string">"e:"</span>, e)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">d: tf.Tensor(</span><br><span class="line">[[ <span class="number">1.5967013</span>  <span class="number">-0.8324652</span> ]</span><br><span class="line"> [<span class="number">-0.86804473</span>  <span class="number">1.6559838</span> ]], shape=(<span class="number">2</span>, <span class="number">2</span>), dtype=float32)</span><br><span class="line">e: tf.Tensor(</span><br><span class="line">[[<span class="number">-0.5170119</span>   <span class="number">0.4516224</span> ]</span><br><span class="line"> [ <span class="number">1.1635941</span>  <span class="number">-0.06372815</span>]], shape=(<span class="number">2</span>, <span class="number">2</span>), dtype=float32)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>tf.random.uniform(维度，minval=最小值,maxval=最大值)生成均匀分布在min和max间的随机数。</li>
+</ul>
+</li>
+<li><p>常用函数</p>
+<ul>
+<li><p>tf.cast(张量名，dtype=数据类型)强制类型转换</p>
+</li>
+<li><p>找元素上的最小值tf.reduce_min(张量名)</p>
+</li>
+<li><p>最大值tf.reduce_max(张量名)</p>
+</li>
+<li><p>简单理解axis=0表示纵向操作，=1表示横向操作</p>
+<ul>
+<li>控制求平均值的方向，如：tf.reduce_mean(张量名, axis=操作轴)</li>
+<li>求和，如：tf.reduce_sum(张量名, axis=操作轴)</li>
+<li>如果不指定axis，则对所有元素进行操作。</li>
+</ul>
+</li>
+<li><p>tf.Variable()将变量标记为可训练的，被标记的变量会在反向传播中记录梯度信息。神经网络的训练中，常用该函数标记待训练参数。</p>
+<ul>
+<li>如：<code>w=tf.Variable(tf.random.normal([2,2],mean=0,stddev=1))</code></li>
+</ul>
+</li>
+<li><p>常用计算函数</p>
+<ul>
+<li>tf.add, tf.subtract, tf.multiply, tf.divide，维度相同的张量才可以做四则运算</li>
+<li>平方、次方与开方：tf.square, tf.pow, tf.sqrt</li>
+<li>矩阵乘：tf.matmul</li>
+</ul>
+</li>
+<li><p>tf.data.Dataset.from_tensor_slices((输入特征，标签))</p>
+<ul>
+<li>切分传入张量的第一维度，生成输入特征/标签对，构建数据集</li>
+</ul>
+</li>
+<li><p>tf.GradientTape用来求张量的梯度</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> tf.GradientTape() <span class="keyword">as</span> tape:</span><br><span class="line">    x = tf.Variable(tf.constant(<span class="number">3.0</span>))</span><br><span class="line">    y = tf.pow(x, <span class="number">2</span>)</span><br><span class="line">    <span class="comment"># 若干计算过程</span></span><br><span class="line">grad = tape.gradient(y, x)<span class="comment"># （函数，对谁求导）</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>enumerate，python的内建函数，可遍历每个元素（列表、元祖或字符串），组合为：索引 元素，常用for循环中使用</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">seq = [<span class="string">'one'</span>, <span class="string">'two'</span>, <span class="string">'three'</span>]</span><br><span class="line"><span class="keyword">for</span> i, element <span class="keyword">in</span> enumerate(seq):</span><br><span class="line">    print(i, element)</span><br><span class="line">    </span><br><span class="line"><span class="comment">#结果</span></span><br><span class="line"><span class="number">0</span> one</span><br><span class="line"><span class="number">1</span> two</span><br><span class="line"><span class="number">2</span> three</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>tf.one_hot独热编码，分类问题中，常用独热码做标签，标记类别：1表示是，0表示非。</p>
+<ul>
+<li>将待转换的数据，转换为one-hot形式的数据输出</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">classes = <span class="number">3</span></span><br><span class="line">labels = tf.constant([<span class="number">1</span>, <span class="number">0</span>, <span class="number">2</span>])  <span class="comment"># 输入的元素值最小为0，最大为2</span></span><br><span class="line">output = tf.one_hot(labels, depth=classes)</span><br><span class="line"><span class="comment">#（待转换数据，depth=几分类）</span></span><br><span class="line">print(<span class="string">"result of labels1:"</span>, output)</span><br><span class="line">print(<span class="string">"\n"</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>tf.nn.softmax使输出符合概率分布，和为1</p>
+</li>
+<li><p>assign_sub常用于函数的自更新</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x = tf.Variable(<span class="number">4</span>)</span><br><span class="line">x.assign_sub(<span class="number">1</span>) <span class="comment"># w-=1</span></span><br><span class="line">print(<span class="string">"x:"</span>, x)  <span class="comment"># 4-1=3</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>tf.argmax<code>tf.argmax(test, axis=0))  # 返回每一列最大值的索引</code></p>
+</li>
+</ul>
+</li>
+<li><p>读入数据集</p>
+<ul>
+<li>lris鸢尾花数据集<ul>
+<li>从sklearn包datasets读入数据集</li>
+</ul>
+</li>
+<li>准备数据<ul>
+<li>数据集读入</li>
+<li>数据集乱序</li>
+<li>生成训练集和测试集</li>
+<li>配成（输入特征，标签）对，每次读入一小撮（batch）</li>
+</ul>
+</li>
+<li>搭建网络<ul>
+<li>定义神经网络中所有可训练参数</li>
+</ul>
+</li>
+<li>参数优化<ul>
+<li>嵌套循环迭代，with结构更新参数，显示当前loss</li>
+</ul>
+</li>
+<li>测试效果<ul>
+<li>计算当前参数前后传播后的准确率，显示当前acc</li>
+</ul>
+</li>
+<li>acc/loss可视化</li>
+</ul>
+</li>
+</ul>
+<h1 id="二、预备知识"><a href="#二、预备知识" class="headerlink" title="二、预备知识"></a>二、预备知识</h1><ul>
+<li><p>tf.where(条件语句，真返回A，假返回B)</p>
+</li>
+<li><p>np.random.RandomState.rand(维度)返回一个[0,1)之间的随机数</p>
+</li>
+<li><p>np.vstack(数组1，数组2)将两个数组按垂直方向叠加</p>
+</li>
+<li><p>np.mgrid</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 生成等间隔数值点</span></span><br><span class="line">x, y = np.mgrid[<span class="number">1</span>:<span class="number">3</span>:<span class="number">1</span>, <span class="number">2</span>:<span class="number">4</span>:<span class="number">0.5</span>]</span><br><span class="line"><span class="comment"># 将x, y拉直，并合并配对为二维张量，生成二维坐标点</span></span><br><span class="line">grid = np.c_[x.ravel(), y.ravel()]</span><br><span class="line">print(<span class="string">"x:\n"</span>, x)</span><br><span class="line">print(<span class="string">"y:\n"</span>, y)</span><br><span class="line">print(<span class="string">"x.ravel():\n"</span>, x.ravel())</span><br><span class="line">print(<span class="string">"y.ravel():\n"</span>, y.ravel())</span><br><span class="line">print(<span class="string">'grid:\n'</span>, grid)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出</span></span><br><span class="line">x:</span><br><span class="line"> [[<span class="number">1.</span> <span class="number">1.</span> <span class="number">1.</span> <span class="number">1.</span>]</span><br><span class="line"> [<span class="number">2.</span> <span class="number">2.</span> <span class="number">2.</span> <span class="number">2.</span>]]</span><br><span class="line">y:</span><br><span class="line"> [[<span class="number">2.</span>  <span class="number">2.5</span> <span class="number">3.</span>  <span class="number">3.5</span>]</span><br><span class="line"> [<span class="number">2.</span>  <span class="number">2.5</span> <span class="number">3.</span>  <span class="number">3.5</span>]]</span><br><span class="line">x.ravel():</span><br><span class="line"> [<span class="number">1.</span> <span class="number">1.</span> <span class="number">1.</span> <span class="number">1.</span> <span class="number">2.</span> <span class="number">2.</span> <span class="number">2.</span> <span class="number">2.</span>]</span><br><span class="line">y.ravel():</span><br><span class="line"> [<span class="number">2.</span>  <span class="number">2.5</span> <span class="number">3.</span>  <span class="number">3.5</span> <span class="number">2.</span>  <span class="number">2.5</span> <span class="number">3.</span>  <span class="number">3.5</span>]</span><br><span class="line">grid:</span><br><span class="line"> [[<span class="number">1.</span>  <span class="number">2.</span> ]</span><br><span class="line"> [<span class="number">1.</span>  <span class="number">2.5</span>]</span><br><span class="line"> [<span class="number">1.</span>  <span class="number">3.</span> ]</span><br><span class="line"> [<span class="number">1.</span>  <span class="number">3.5</span>]</span><br><span class="line"> [<span class="number">2.</span>  <span class="number">2.</span> ]</span><br><span class="line"> [<span class="number">2.</span>  <span class="number">2.5</span>]</span><br><span class="line"> [<span class="number">2.</span>  <span class="number">3.</span> ]</span><br><span class="line"> [<span class="number">2.</span>  <span class="number">3.5</span>]]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>神经网络(NN)复杂度</p>
+<ul>
+<li><p>空间复杂度</p>
+<ul>
+<li>层数=隐藏层的层数+1个输出层（注意区分节点和层）</li>
+<li>总参数=总w+总b</li>
+</ul>
+</li>
+<li><p>时间复杂度</p>
+<ul>
+<li>乘加运算次数</li>
+</ul>
+</li>
+<li><p>学习率</p>
+<ul>
+<li>指数衰减学习率，可以先用较大的学习率，快速得到较优解，然后逐步减小学习率，使模型在训练后期稳定。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">epoch = <span class="number">40</span></span><br><span class="line">LR_BASE = <span class="number">0.2</span>  <span class="comment"># 最初学习率</span></span><br><span class="line">LR_DECAY = <span class="number">0.99</span>  <span class="comment"># 学习率衰减率</span></span><br><span class="line">LR_STEP = <span class="number">1</span>  <span class="comment"># 喂入多少轮BATCH_SIZE后，更新一次学习率</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>激活函数sigmoid()<script type="math/tex">f(x)=\frac{1}{1+e^{-x}}</script></p>
+<ul>
+<li>易造成梯度消失</li>
+<li>输出非0均值，收敛慢</li>
+<li>幂运算复杂，训练时间长</li>
+<li>还有Tanh函数、Relu函数、Leaky Relu函数</li>
+</ul>
+</li>
+<li><p>损失函数(loss)：预测值(y)与已知答案(y_)的差距</p>
+<ul>
+<li>均方误差mse<ul>
+<li>loss_mse=tf.reduce_mean(tf.square(y_-y))</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>交叉熵损失函数CE：两个概率分布之间的距离</p>
+<ul>
+<li><script type="math/tex; mode=display">H(y\_,y)=-\sum{y\_*ln{y}}</script></li>
+<li>softmax与交叉熵结合<ul>
+<li>tf.nn.softmax_cross_entropy_with_logits</li>
+<li>先符合概率分布，再求交叉熵</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>缓解过拟合</p>
+<ul>
+<li>欠拟合<ul>
+<li>增加输入特征项</li>
+<li>增加网络参数</li>
+<li>减少正则化参数</li>
+</ul>
+</li>
+<li>过拟合<ul>
+<li>数据清洗</li>
+<li>增大训练集</li>
+<li>采用正则化</li>
+<li>增大正则化参数</li>
+</ul>
+</li>
+<li>正则化缓解过拟合：引入模型复杂度指标，利用给w加权值，弱化了训练数据的噪声。<ul>
+<li>L1正则化所有w求和，L2正则化所有w平方求和</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>神经网络参数优化器</p>
+<ul>
+<li>待优化参数w，损失函数loss，学习率lr，每次迭代一个batch，t表示当前batch迭代的总次数</li>
+<li>SGD，常用的梯度下降法</li>
+<li>SGDM，增加一阶动量</li>
+<li>Adagrad，增加二阶动量</li>
+<li>RMSProp，SGD基础上增加二阶动量</li>
+<li>Adam，同时结合SGDM一阶动量和RMSProp二阶动量</li>
+</ul>
+</li>
+</ul>
+<h1 id="三、网络八股"><a href="#三、网络八股" class="headerlink" title="三、网络八股"></a>三、网络八股</h1><h3 id="keras搭建神经网络"><a href="#keras搭建神经网络" class="headerlink" title="keras搭建神经网络"></a>keras搭建神经网络</h3><ul>
+<li><p>tf.keras搭建网络八股六步法</p>
+<ul>
+<li>import</li>
+<li>train,test<ul>
+<li>自制数据集、数据增强</li>
+</ul>
+</li>
+<li>model=tf.keras.models.Sequential([网络结构])<ul>
+<li>拉直层：tf.keras.layers.Flatten()</li>
+<li>全连接层：tf.keras.layers.Dense(神经元个数,activation=’激活函数’,kernel_regularizer=哪种正则化）<ul>
+<li>activation：relu、softmax、sigmoid、tanh</li>
+<li>kernel_regularizer：tf.keras.regularizers.l1()、tf.keras.regularizers.l2()</li>
+</ul>
+</li>
+<li>卷积层：tf.keras.layers.Conv2D(filters=卷积核个数,kernel_size=卷积核尺寸,strides=卷积步长，padding=“valid”or“same”)</li>
+<li>LSTM层：tf.keras.layers,LSTM()</li>
+<li>class MyModel(Model)</li>
+</ul>
+</li>
+<li>model.compile(optimizer=优化器,loss=,损失函数，metrics=[‘准确率’])<ul>
+<li>optimizer=tf.keras.optimizers.SGD(lr=0.1)</li>
+<li>loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=False)</li>
+<li>metrics=sparse_categorical_accuracy</li>
+</ul>
+</li>
+<li>model.fit(x_train输入特征, y_train标签, batch_size=32, epochs=500, validation_split=0.2从训练集划分多少比例给测试集, validation_freq=20多少次epoch测试一次)</li>
+<li>model.summary()可以打印网络结构</li>
+</ul>
+</li>
+<li><p>MNIST数据集</p>
+<ul>
+<li>导入数据集</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mnist = tf.keras.datasets.mnist</span><br><span class="line">(x_train, y_train), (x_test, y_test) = mnist.load_data()</span><br></pre></td></tr></table></figure>
+<ul>
+<li>输入特征，输入神经网络时，将数据拉伸为一维数组</li>
+</ul>
+</li>
+<li><p>FASHION数据集，6万张28*28像素点的衣裤等图片和标签</p>
+<ul>
+<li>导入数据集</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fashion = tf.keras.datasets.fashion_mnist</span><br><span class="line">(x_train, y_train),(x_test, y_test) = fashion.load_data()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>数据增强</p>
+<ul>
+<li>image_gen_train=tf.keras.preeprocessing.image.ImageDataGenerator</li>
+</ul>
+</li>
+<li><p>断点续训</p>
+</li>
+<li><p>参数提取，参数存储文本</p>
+</li>
+<li><p>acc/loss可视化</p>
+</li>
+<li><p>predict(输入特征，batch_size=整数)返回前向传播计算结果  </p>
+</li>
+</ul>
+<h1 id="四、卷积"><a href="#四、卷积" class="headerlink" title="四、卷积"></a>四、卷积</h1><h3 id="卷积计算过程"><a href="#卷积计算过程" class="headerlink" title="卷积计算过程"></a>卷积计算过程</h3><ul>
+<li><p>全连接NN：每个神经元与前后相邻层的每一个神经元都有连接关系，输入是特征，输出为预测的结果</p>
+</li>
+<li><p>一种有效提取图像特征的方法，输入特征图的深度，决定了当前层卷积核的深度</p>
+</li>
+</ul>
+<h3 id="感受野"><a href="#感受野" class="headerlink" title="感受野"></a>感受野</h3><ul>
+<li>待训练参数量，当x&gt;10时，两层3x3的卷积核优于5x5的卷积核</li>
+</ul>
+<h3 id="全零填充"><a href="#全零填充" class="headerlink" title="全零填充"></a>全零填充</h3><ul>
+<li>用参数padding=’SAME’表示，不使用全零填充，用’VALID’</li>
+</ul>
+<h3 id="TF描述卷积层"><a href="#TF描述卷积层" class="headerlink" title="TF描述卷积层"></a>TF描述卷积层</h3><ul>
+<li>tf.keras.layers.Conv2D(<ul>
+<li>filter=卷积核个数</li>
+<li>kernel_size=卷积核尺寸</li>
+<li>strides=滑动步长</li>
+<li>padding=’same’or’valid’</li>
+<li>activation=’relu’or’sigmoid’or’tanh’or’softmax’等</li>
+<li>input_shape=(高，宽，通道数)可省略</li>
+</ul>
+</li>
+<li>)</li>
+</ul>
+<h3 id="批标准化"><a href="#批标准化" class="headerlink" title="批标准化"></a>批标准化</h3><ul>
+<li>标准化：使数据符合0均值，1为标准差的分布</li>
+<li>批标准化，对一小批数九标准化处理</li>
+</ul>
+<h3 id="池化"><a href="#池化" class="headerlink" title="池化"></a>池化</h3><ul>
+<li>用于减少特征数据量</li>
+<li>最大值池化可以提取图片纹理，均值池化可保留背景特征</li>
+<li>4x4变2x2</li>
+<li>tf.keras.layers.MaxPool2D()</li>
+</ul>
+<h3 id="舍弃"><a href="#舍弃" class="headerlink" title="舍弃"></a>舍弃</h3><ul>
+<li>将一部分神经元按照一定概率一定概率从神经网络中暂时舍弃。神经网络使用时，被舍弃的神经元恢复链接。</li>
+<li>tf.keras.layers.Dropout</li>
+</ul>
+<h3 id="卷积神经网络"><a href="#卷积神经网络" class="headerlink" title="卷积神经网络"></a>卷积神经网络</h3><ul>
+<li>借助卷积核提取特征后，送入全连接网络</li>
+<li>卷积-批标准化-激活-池化-舍弃-全连接</li>
+</ul>
+<h3 id="Cifar10数据集"><a href="#Cifar10数据集" class="headerlink" title="Cifar10数据集"></a>Cifar10数据集</h3><ul>
+<li>导入数据集</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cifar10 = tf.keras.datasets.cifar10</span><br><span class="line">(x_train, y_train), (x_test, y_test) = cifar10.load_data()</span><br></pre></td></tr></table></figure>
+<h3 id="卷积神经网络搭建示例"><a href="#卷积神经网络搭建示例" class="headerlink" title="卷积神经网络搭建示例"></a>卷积神经网络搭建示例</h3><ul>
+<li>训练Cifar10的数据集<ul>
+<li>搭建一个一层卷积、两层全连接的网络，使用6个5<em>5的卷积核，过2\</em>2的池化核</li>
+<li>C：核：6*5*5，步长：1</li>
+<li>B：Yes</li>
+<li>A：relu</li>
+<li>P：max，核：2*2，步长：2</li>
+<li>D：0.2</li>
+<li>Flatten<ul>
+<li>Dense(神经元：128，激活：relu，Dropout：0.2)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="LeNet"><a href="#LeNet" class="headerlink" title="LeNet"></a>LeNet</h3>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/21/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%8EJS/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1338,7 +1919,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-09 12:21:07" itemprop="dateModified" datetime="2021-03-09T12:21:07+08:00">2021-03-09</time>
+                <time title="修改时间：2021-03-24 16:18:19" itemprop="dateModified" datetime="2021-03-24T16:18:19+08:00">2021-03-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1434,7 +2015,8 @@
 </ul>
 </li>
 <li>Repeat</li>
-<li>transpose(1,3).view(4,3*32*32).view(4,3,32,32)（错了，再来一个transpose(1,3)）<ul>
+<li><p>transpose(1,3).view(4,3*32*32).view(4,3,32,32)（错了，再来一个transpose(1,3)）</p>
+<ul>
 <li>维度的先后顺序要跟踪住</li>
 </ul>
 </li>
@@ -1456,13 +2038,22 @@
 <ul>
 <li>torch.cat是将两个张量（tensor）拼接在一起</li>
 </ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a=torch.rand(<span class="number">4</span>,<span class="number">32</span>,<span class="number">8</span>)<span class="comment">#班级1-4班</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b=torch.rand(<span class="number">5</span>,<span class="number">32</span>,<span class="number">8</span>)<span class="comment">#班级5-9班</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>torch.cat([a,b],dim=<span class="number">0</span>).shape</span><br><span class="line"><span class="comment">#合并a，b，合并它们的第1个维度，其他维度应该是相等的</span></span><br><span class="line">torch.Size([<span class="number">9</span>,<span class="number">32</span>,<span class="number">8</span>])</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> torch</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>A=torch.ones(<span class="number">2</span>,<span class="number">3</span>) <span class="comment">#2x3的张量（矩阵）                                     </span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>A</span><br><span class="line">tensor([[ <span class="number">1.</span>,  <span class="number">1.</span>,  <span class="number">1.</span>],</span><br><span class="line">        [ <span class="number">1.</span>,  <span class="number">1.</span>,  <span class="number">1.</span>]])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>B=<span class="number">2</span>*torch.ones(<span class="number">4</span>,<span class="number">3</span>)<span class="comment">#4x3的张量（矩阵）                                    </span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>B</span><br><span class="line">tensor([[ <span class="number">2.</span>,  <span class="number">2.</span>,  <span class="number">2.</span>],</span><br><span class="line">        [ <span class="number">2.</span>,  <span class="number">2.</span>,  <span class="number">2.</span>],</span><br><span class="line">        [ <span class="number">2.</span>,  <span class="number">2.</span>,  <span class="number">2.</span>],</span><br><span class="line">        [ <span class="number">2.</span>,  <span class="number">2.</span>,  <span class="number">2.</span>]])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>C=torch.cat((A,B),<span class="number">0</span>)<span class="comment">#按维数0（行）拼接</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>C</span><br><span class="line">tensor([[ <span class="number">1.</span>,  <span class="number">1.</span>,  <span class="number">1.</span>],</span><br><span class="line">         [ <span class="number">1.</span>,  <span class="number">1.</span>,  <span class="number">1.</span>],</span><br><span class="line">         [ <span class="number">2.</span>,  <span class="number">2.</span>,  <span class="number">2.</span>],</span><br><span class="line">         [ <span class="number">2.</span>,  <span class="number">2.</span>,  <span class="number">2.</span>],</span><br><span class="line">         [ <span class="number">2.</span>,  <span class="number">2.</span>,  <span class="number">2.</span>],</span><br><span class="line">         [ <span class="number">2.</span>,  <span class="number">2.</span>,  <span class="number">2.</span>]])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>C.size()</span><br><span class="line">torch.Size([<span class="number">6</span>, <span class="number">3</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>D=<span class="number">2</span>*torch.ones(<span class="number">2</span>,<span class="number">4</span>) <span class="comment">#2x4的张量（矩阵）</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>C=torch.cat((A,D),<span class="number">1</span>)<span class="comment">#按维数1（列）拼接</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>C</span><br><span class="line">tensor([[ <span class="number">1.</span>,  <span class="number">1.</span>,  <span class="number">1.</span>,  <span class="number">2.</span>,  <span class="number">2.</span>,  <span class="number">2.</span>,  <span class="number">2.</span>],</span><br><span class="line">        [ <span class="number">1.</span>,  <span class="number">1.</span>,  <span class="number">1.</span>,  <span class="number">2.</span>,  <span class="number">2.</span>,  <span class="number">2.</span>,  <span class="number">2.</span>]])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>C.size()</span><br><span class="line">torch.Size([<span class="number">2</span>, <span class="number">7</span>])</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><a href="https://blog.csdn.net/Teeyohuang/article/details/80362756?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-2.nonecase&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-2.nonecase" target="_blank" rel="noopener">Stack</a></p>
+<ul>
+<li>创建一个新的维度，如一班[32,8]，二班[32,8]，torch.stack([a,b],dim=0)合并后是[2,32,8]表示两个班级</li>
+<li>stack表示在哪个维度进行扩展</li>
+</ul>
 </li>
 <li><p>Split</p>
 <ul>
 <li>按长度拆分，长度相同给定长度，长度不同用[m,n]给定</li>
+<li>比如把[2,32,8]从1维拆回去c.split([1,1],dim=0)<ul>
+<li>[1,32,8]和[1,32,8]</li>
+</ul>
+</li>
 </ul>
 </li>
 <li><p>Chunk</p>
@@ -1470,6 +2061,57 @@
 <li>按数量拆分，给定数量值</li>
 </ul>
 </li>
+</ul>
+<h1 id="6、加减乘除"><a href="#6、加减乘除" class="headerlink" title="6、加减乘除"></a>6、加减乘除</h1><ul>
+<li>add、sub、mul、div</li>
+<li>也可以使用+、-、*、/</li>
+<li>矩阵相乘<ul>
+<li>Torch.matmul</li>
+<li>不管几维都可以用</li>
+</ul>
+</li>
+<li>pow函数次方<ul>
+<li>a.pow(2)</li>
+<li>a.sqrt()开方</li>
+</ul>
+</li>
+<li>自然指数exp和开log<ul>
+<li>以2为底就log2、以10就log10</li>
+</ul>
+</li>
+<li>近似值<ul>
+<li>a=torch.tensor(3.14)<ul>
+<li>向下a.floor()=3.</li>
+<li>向上a.ceil()=4.</li>
+<li>小数分数拆分a.trunc()=3.</li>
+<li>四舍五入a.frac()=0.1400</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>clamp限制<ul>
+<li>grad.clamp(10)全部大于10</li>
+<li>grad.clamp(0,10)0到10之间</li>
+</ul>
+</li>
+</ul>
+<h1 id="7、数据统计"><a href="#7、数据统计" class="headerlink" title="7、数据统计"></a>7、数据统计</h1><ul>
+<li>范数 <ul>
+<li>norm(1)所有元素个数</li>
+<li>norm(2)所有元素的值的平方和再开根号</li>
+<li>norm(1,dim=1)</li>
+</ul>
+</li>
+<li>argmax\argmin</li>
+<li>dim\keepdim</li>
+<li>topk\kthvalue</li>
+<li>大于小于等比较参考C语言<ul>
+<li>矩阵比较torch.eq(a, b)</li>
+</ul>
+</li>
+</ul>
+<h1 id="8、高阶OP"><a href="#8、高阶OP" class="headerlink" title="8、高阶OP"></a>8、高阶OP</h1><ul>
+<li>torch.where(condition,x,y)  -&gt;. Tensor<br>- </li>
 </ul>
 
       
@@ -1623,505 +2265,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/14/CSS%E5%9F%BA%E7%A1%80/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="http://image.guziyf.com/avatar">
-      <meta itemprop="name" content="Wang QiAn">
-      <meta itemprop="description" content="正视无知，消除傲慢">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="古子の博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/01/14/CSS%E5%9F%BA%E7%A1%80/" class="post-title-link" itemprop="url">CSS基础</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-01-14 13:06:27" itemprop="dateCreated datePublished" datetime="2021-01-14T13:06:27+08:00">2021-01-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-01-21 19:49:11" itemprop="dateModified" datetime="2021-01-21T19:49:11+08:00">2021-01-21</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/weblearn/" itemprop="url" rel="index"><span itemprop="name">weblearn</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="1-引入方式"><a href="#1-引入方式" class="headerlink" title="1.引入方式"></a>1.引入方式</h1><ul>
-<li><p>行内样式、内部样式</p>
-<ul>
-<li>行内样式通过HTML的style属性引入</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"width: 200px;height: 200px;background-color: red;"</span>&gt;</span>盒子<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>局限性：只对当前的元素生效</li>
-<li>行内的优先级更高</li>
-<li>内部样式</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">        <span class="selector-class">.box</span>&#123;</span></span><br><span class="line">            width: 300px;</span><br><span class="line">            height: 300px;</span><br><span class="line">            background-color: blue;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span>盒子<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/01/14/CSS%E5%9F%BA%E7%A1%80/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/13/html%E6%A6%82%E5%BF%B5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="http://image.guziyf.com/avatar">
-      <meta itemprop="name" content="Wang QiAn">
-      <meta itemprop="description" content="正视无知，消除傲慢">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="古子の博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/01/13/html%E6%A6%82%E5%BF%B5/" class="post-title-link" itemprop="url">html基础</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-01-13 11:53:33" itemprop="dateCreated datePublished" datetime="2021-01-13T11:53:33+08:00">2021-01-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-01-21 19:46:03" itemprop="dateModified" datetime="2021-01-21T19:46:03+08:00">2021-01-21</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/weblearn/" itemprop="url" rel="index"><span itemprop="name">weblearn</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line">文档类型的声明标签</span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line">lang语言种类en为英语、zh-CN为中文</span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span> 必须写，规定字符编码</span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>各种属性<a href="https://www.w3school.com.cn/h.asp" target="_blank" rel="noopener">查阅文档</a></p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>标签名</th>
-<th>定义</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>html</td>
-<td>HTML标签</td>
-<td>最大的标签，可称根标签</td>
-</tr>
-<tr>
-<td>head</td>
-<td>文档头部</td>
-<td>head中必须要设置titile</td>
-</tr>
-<tr>
-<td>titile</td>
-<td>文档标题</td>
-<td>网页的标题</td>
-</tr>
-<tr>
-<td>body</td>
-<td>文档主体</td>
-<td>元素包含文档所有内容，页面内容基本都在body</td>
-</tr>
-</tbody>
-</table>
-</div>
-<ul>
-<li>标题标签</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>-<span class="tag">&lt;<span class="name">h6</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>段落标签<ul>
-<li>分段就必须用段落标签</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;&lt;&#x2F;p&gt;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>换行标签<ul>
-<li>单标签</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;br&#x2F;&gt;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>文本格式化标签</li>
-</ul>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>语义</th>
-<th>标签</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>加粗</td>
-<td>strong或者b</td>
-<td>更推荐使用strong</td>
-</tr>
-<tr>
-<td>倾斜</td>
-<td>em或者i</td>
-<td>更推荐em</td>
-</tr>
-<tr>
-<td>删除线</td>
-<td>del或者s</td>
-<td>更推荐del</td>
-</tr>
-<tr>
-<td>下划线</td>
-<td>ins或者u</td>
-<td>更推荐ins</td>
-</tr>
-</tbody>
-</table>
-</div>
-<ul>
-<li>div和span标签<ul>
-<li>没有语义</li>
-<li>就是一个盒子，用来装内容</li>
-</ul>
-</li>
-<li>图像标签</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">""</span> <span class="attr">alt</span>=<span class="string">""</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>属性</th>
-<th>属性值</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>src</td>
-<td>图片路径</td>
-<td>必须属性</td>
-</tr>
-<tr>
-<td>alt</td>
-<td>文本</td>
-<td>替换文本，图像不能显示的文字</td>
-</tr>
-<tr>
-<td>title</td>
-<td>文本</td>
-<td>提示文本，鼠标放在图像上，显示文字</td>
-</tr>
-<tr>
-<td>width</td>
-<td>像素</td>
-<td>设置图像宽度</td>
-</tr>
-<tr>
-<td>height</td>
-<td>像素</td>
-<td>高度</td>
-</tr>
-<tr>
-<td>border</td>
-<td>像素</td>
-<td>图像边框粗细</td>
-</tr>
-</tbody>
-</table>
-</div>
-<ul>
-<li>超链接标签</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">""</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>属性</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>href</td>
-<td>url地址</td>
-</tr>
-<tr>
-<td>target</td>
-<td>默认为 _self ，新窗口打开是 _blank</td>
-</tr>
-<tr>
-<td>空链接</td>
-<td>a href = “#”</td>
-</tr>
-<tr>
-<td>锚点链接</td>
-<td>href = “#名字”，对应位置加id = “名字”</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h1 id="表格标签"><a href="#表格标签" class="headerlink" title="表格标签"></a>表格标签</h1><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">table</span> <span class="attr">align</span>=<span class="string">"center"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>属性名</th>
-<th>属性值</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>align</td>
-<td>left、center、right</td>
-<td>规定表格相对周围元素的对齐方式</td>
-</tr>
-<tr>
-<td>border</td>
-<td>1或””</td>
-<td>规定表格单元是否拥有边框，默认为””，表示没有边框</td>
-</tr>
-<tr>
-<td>cellpadding</td>
-<td>像素值</td>
-<td>规定单元边沿与其内容之间的空白，默认1像素</td>
-</tr>
-<tr>
-<td>cellspacing</td>
-<td>像素值</td>
-<td>规定单元格之间的空白,默认2像素</td>
-</tr>
-<tr>
-<td>width</td>
-<td>像素值或百分比</td>
-<td>规定表格的宽度</td>
-</tr>
-</tbody>
-</table>
-</div>
-<ul>
-<li><p>表格结构标签</p>
-<ul>
-<li>thead定义表格头部</li>
-<li>tbody定义表格主体，主要用于放数据本体</li>
-</ul>
-</li>
-<li><p>合并单元格</p>
-<ul>
-<li>跨行合并：rowspan=””</li>
-<li>跨列合并：colspan=””</li>
-</ul>
-</li>
-</ul>
-<h1 id="列表标签"><a href="#列表标签" class="headerlink" title="列表标签"></a>列表标签</h1><ul>
-<li>无序列表</li>
-<li>去掉小圆点：list-style:none</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>有序列表</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ol</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>自定义列表</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dl</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dt</span>&gt;</span><span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dd</span>&gt;</span><span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dd</span>&gt;</span><span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dl</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h1 id="元素显示模式"><a href="#元素显示模式" class="headerlink" title="元素显示模式"></a>元素显示模式</h1><ul>
-<li>块级元素<ul>
-<li>div独占一行</li>
-<li>是一个容器及盒子</li>
-<li>文字类的元素内不能放块，比如p、h1</li>
-</ul>
-</li>
-<li><p>行内元素</p>
-<ul>
-<li>span、strong、ins等等</li>
-<li>宽高直接设置是没有效果的</li>
-<li>默认宽度就是它本身内容的宽度</li>
-<li>只能容纳文本和其他行内元素</li>
-</ul>
-</li>
-<li><p>行内块元素</p>
-<ul>
-<li>img、input、td</li>
-<li>和相邻行内元素在一行时，之间会有空隙</li>
-</ul>
-</li>
-<li>转换模式<ul>
-<li>block|inline|inline-block</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span> &#123;</span><br><span class="line">            <span class="attribute">width</span>: <span class="number">150px</span>;</span><br><span class="line">            <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">            <span class="attribute">background-color</span>: pink;</span><br><span class="line">            <span class="comment">/* 把行内元素转换为块级元素 */</span></span><br><span class="line">            <span class="attribute">display</span>: block;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-<h1 id="form"><a href="#form" class="headerlink" title="form"></a>form</h1><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">""</span>&gt;</span><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--要使返回的密码不可见--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">""</span> <span class="attr">name</span>=<span class="string">"log"</span> <span class="attr">method</span>=<span class="string">"post"</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>form之间不能相互嵌套</li>
-</ul>
-<h1 id="用户名和密码"><a href="#用户名和密码" class="headerlink" title="用户名和密码"></a>用户名和密码</h1><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">用户名：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"userName"</span> <span class="attr">value</span>=<span class="string">"请输入您的用户名"</span>&gt;</span></span><br><span class="line">密码：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"密码"</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h1 id="单选和多选"><a href="#单选和多选" class="headerlink" title="单选和多选"></a>单选和多选</h1><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">name</span>=<span class="string">"sex"</span> <span class="attr">id</span>=<span class="string">"man"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"man"</span>&gt;</span>男<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">name</span>=<span class="string">"sex"</span> <span class="attr">id</span>=<span class="string">"woman"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"woman"</span>&gt;</span>女<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">id</span>=<span class="string">"basketball"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"basketball"</span>&gt;</span>篮球<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span>&gt;</span>足球</span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span>&gt;</span>排球</span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span>&gt;</span>棒球</span><br></pre></td></tr></table></figure>
-<ul>
-<li>label提供点击文字选择功能</li>
-</ul>
-<h1 id="下拉列表"><a href="#下拉列表" class="headerlink" title="下拉列表"></a>下拉列表</h1><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">name</span>=<span class="string">"city"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"0"</span>&gt;</span>北京<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"1"</span>&gt;</span>河北<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"2"</span>&gt;</span>河南<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"3"</span>&gt;</span>武汉<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"4"</span>&gt;</span>黑龙江<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h1 id="长文本框"><a href="#长文本框" class="headerlink" title="长文本框"></a>长文本框</h1><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">自我介绍：</span><br><span class="line"><span class="tag">&lt;<span class="name">textarea</span> <span class="attr">name</span>=<span class="string">"myself"</span> <span class="attr">id</span>=<span class="string">""</span> <span class="attr">cols</span>=<span class="string">"30"</span> <span class="attr">rows</span>=<span class="string">"10"</span>&gt;</span>午觉</span><br><span class="line"><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h1 id="提交文件"><a href="#提交文件" class="headerlink" title="提交文件"></a>提交文件</h1><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">""</span> <span class="attr">name</span>=<span class="string">"1w2121"</span> <span class="attr">enctype</span>=<span class="string">"multipart/form-data"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        文件：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"file"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        隐藏域：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"hidden"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        图片提交按钮：</span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"image"</span> <span class="attr">src</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>input type=”file”默认的表单编码格式不支持上传文件，但表单元素有文件时，需要把表单的编码格式改为二进制enctype</li>
-</ul>
-<h1 id="表单元素的属性"><a href="#表单元素的属性" class="headerlink" title="表单元素的属性"></a>表单元素的属性</h1><div class="table-container">
-<table>
-<thead>
-<tr>
-<th>元素</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>type</td>
-<td>设置输入框</td>
-</tr>
-<tr>
-<td>name</td>
-<td>表单元素名称</td>
-</tr>
-<tr>
-<td>value</td>
-<td>当前值</td>
-</tr>
-<tr>
-<td>*checked</td>
-<td>默认被选中，一半和按钮一起用</td>
-</tr>
-<tr>
-<td>selected</td>
-<td>默认显示，配合option</td>
-</tr>
-<tr>
-<td>disable</td>
-<td>禁用，属性等于属性值</td>
-</tr>
-<tr>
-<td>readonly</td>
-<td>只读,可以点击但不能编辑，属性等于属性值</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>默认被选中和默认显示：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">name</span>=<span class="string">"sex"</span> <span class="attr">checked</span>&gt;</span>男</span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">name</span>=<span class="string">"sex"</span>&gt;</span>女</span><br><span class="line">  </span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">name</span>=<span class="string">"month"</span> <span class="attr">id</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">    		<span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"1"</span>&gt;</span>1<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"2"</span> <span class="attr">selected</span>&gt;</span>2<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"3"</span>&gt;</span>3<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"4"</span>&gt;</span>4<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"5"</span>&gt;</span>5<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"6"</span>&gt;</span>6<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h1 id="label标签"><a href="#label标签" class="headerlink" title="label标签"></a>label标签</h1><ul>
-<li>增加了用户体验</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"text"</span>&gt;</span>用户名：<span class="tag">&lt;/<span class="name">label</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">id</span>=<span class="string">"text"</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h1 id="文本域标签"><a href="#文本域标签" class="headerlink" title="文本域标签"></a>文本域标签</h1><ul>
-<li>textarea</li>
-</ul>
-<h1 id="实体字符"><a href="#实体字符" class="headerlink" title="实体字符"></a>实体字符</h1><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;!<span class="selector-tag">--</span>空格<span class="selector-tag">--</span>&gt;					 &amp;<span class="selector-tag">nbsp</span>;</span><br><span class="line"></span><br><span class="line">&lt;!<span class="selector-tag">--</span>&lt;<span class="selector-tag">--</span>&gt; 			   		&amp;<span class="selector-tag">lt</span>;</span><br><span class="line"></span><br><span class="line">&lt;!<span class="selector-tag">--</span>&gt;<span class="selector-tag">--</span>&gt;						&amp;<span class="selector-tag">gt</span>;</span><br><span class="line"></span><br><span class="line">&lt;!<span class="selector-tag">--</span>版权©️<span class="selector-tag">--</span>&gt;				 &amp;<span class="selector-tag">copy</span>;</span><br><span class="line"></span><br><span class="line">&lt;!<span class="selector-tag">--</span>注册商标®️<span class="selector-tag">--</span>&gt;		 &amp;<span class="selector-tag">reg</span>;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -2193,14 +2336,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-count">24</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
@@ -2210,7 +2353,7 @@
         <a href="https://github.com/guziyf" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;guziyf" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
       </span>
       <span class="links-of-author-item">
-        <a href="mailto:805170066@qq.com" title="E-Mail → mailto:805170066@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+        <a href="mailto:guziyf@163.com" title="E-Mail → mailto:guziyf@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
       </span>
   </div>
 
